@@ -1,4 +1,6 @@
 
+// the order list // 
+
 const informations = [
     "Neuer WP mit E01 6 Wochen Frist",
     "Neuer WP mit ZD2 6 Wochen Frist",
@@ -14,10 +16,8 @@ const informations = [
 
 const contact = document.getElementById('contact');
 
-// const button = document.getElementById("button");
-// const nameInput = document.getElementById('nameInput');
-// nameInput.id = 'nameInput'
 
+// the input department // 
 const nameInput = document.createElement('input');
 nameInput.id = 'nameInput';
 nameInput.placeholder = 'Your initials...'
@@ -32,22 +32,53 @@ button.addEventListener('click', run);
 contact.appendChild(nameInput);
 contact.appendChild(button);
 
-const eventList = document.createElement('div');
-eventList.id = 'eventList';
+// == END == input department // 
 
-function getFormattedDate() {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    const yyyy = today.getFullYear();
+
+// the date department // 
+
+const today = new Date();
+function getFormattedDate(date) {
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0'); 
+    const yyyy = date.getFullYear();
 
     return dd + '.' + mm + '.' + yyyy;
 }
-const formattedDate = getFormattedDate();
+const dateToday = getFormattedDate(today);
+
+const sixWeeksAgo = new Date();
+sixWeeksAgo.setDate(sixWeeksAgo.getDate() - 6 * 7);
+
+const seventeenDaysAgo = new Date();
+seventeenDaysAgo.setDate(seventeenDaysAgo.getDate() - 17);
+
+const tenDaysAgo = new Date();
+tenDaysAgo.setDate(tenDaysAgo.getDate() - 10);
+
+// == END == date department // 
+
+// event list and old date department // 
+const eventList = document.createElement('div');
+eventList.id = 'eventList';
+
+const oldDate = document.createElement('div'); 
+oldDate.id = 'oldDate'; 
+oldDateText = `
+17 days:
+${getFormattedDate(tenDaysAgo)}
+10 days:
+${getFormattedDate(seventeenDaysAgo)}
+6 weeks: 
+${getFormattedDate(sixWeeksAgo)}`
+oldDate.innerText = oldDateText
+
+// == END == event list and old date department // 
+
 
 function run() {
 
-contact.innerHTML = "";
+    contact.innerHTML = "";
     const workerName = nameInput.value;
 
 	for( let i=0; i< informations.length; i++){
@@ -55,17 +86,18 @@ contact.innerHTML = "";
         const item = document.createElement('div');
         i%2 == 0 ? item.style.backgroundColor = 'lightGray' : item.style.backgroundColor = 'lightBlue';
         item.className = 'item';
-        const message =  `${formattedDate} ${workerName}: ${informations[i]}`;
+        const message =  `${dateToday} ${workerName}: ${informations[i]}`;
         item.addEventListener('click', ()=>{
             navigator.clipboard.writeText(message)    
         })
-
         item.innerText = message;
 		eventList.appendChild(item)
-
 	}
 	contact.appendChild(eventList)
+    contact.appendChild(oldDate)
 }
 
-
+console.log(sixWeeksAgo)
+console.log(getFormattedDate(seventeenDaysAgo))
+console.log(getFormattedDate(tenDaysAgo))
 		

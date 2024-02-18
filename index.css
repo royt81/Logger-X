@@ -8,6 +8,7 @@ body
 .contactObject
 
 #eventList
+#oldDate
 .copyButton
 .item
  */
@@ -24,13 +25,15 @@ body{
 #contact{
     height: 100%;
     width: 100%;
+
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
 
     align-items: center;
     justify-content: center;
 
     margin: 5vh;
+    padding: 3vh;
 }
 
 .contactObject{
@@ -60,8 +63,20 @@ body{
     width: 100%;
     height: 100%;
     gap: 1vh;
-   
+
 }
+#oldDate{
+    text-align: center;
+    margin-right: 5vh;
+    padding: 5vh;
+    background-color: rgb(168, 99, 232);
+    width: 30%;
+    height: 50%;
+    font-family: monospace;
+    font-size: 3vh;
+    border-radius: 5px;
+}
+
 /* .copyButton{
 
     cursor: pointer;
