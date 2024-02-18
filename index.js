@@ -20,7 +20,7 @@ const contact = document.getElementById('contact');
 
 const nameInput = document.createElement('input');
 nameInput.id = 'nameInput';
-nameInput.placeholder = 'Enter your initials...'
+nameInput.placeholder = 'Your initials...'
 nameInput.className = 'contactObject';
 
 const button = document.createElement('button');
