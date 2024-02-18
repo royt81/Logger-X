@@ -50,11 +50,11 @@ const dateToday = getFormattedDate(today);
 const sixWeeksAgo = new Date();
 sixWeeksAgo.setDate(sixWeeksAgo.getDate() - 6 * 7);
 
-const seventeenDaysAgo = new Date();
-seventeenDaysAgo.setDate(seventeenDaysAgo.getDate() - 17);
+const plusSeventeenDay = new Date();
+plusSeventeenDay.setDate(plusSeventeenDay.getDate() + 17);
 
-const tenDaysAgo = new Date();
-tenDaysAgo.setDate(tenDaysAgo.getDate() - 10);
+const plusTenDaysAgo = new Date();
+plusTenDaysAgo.setDate(plusTenDaysAgo.getDate() + 10);
 
 // == END == date department // 
 
@@ -66,9 +66,9 @@ const oldDate = document.createElement('div');
 oldDate.id = 'oldDate'; 
 oldDateText = `
 17 days:
-${getFormattedDate(tenDaysAgo)}
+${getFormattedDate(plusSeventeenDay)}
 10 days:
-${getFormattedDate(seventeenDaysAgo)}
+${getFormattedDate(plusTenDaysAgo)}
 6 weeks: 
 ${getFormattedDate(sixWeeksAgo)}`
 oldDate.innerText = oldDateText
@@ -98,6 +98,6 @@ function run() {
 }
 
 console.log(sixWeeksAgo)
-console.log(getFormattedDate(seventeenDaysAgo))
-console.log(getFormattedDate(tenDaysAgo))
+console.log(getFormattedDate(plusSeventeenDay))
+console.log(getFormattedDate(plusTenDaysAgo))
 		
