@@ -11,7 +11,6 @@ const informations = [
     'KD wurde angeschrieben und Informiert', 
     'KD hat widerrufen/ gekündigt',
     'KD wurde nicht erreicht, daher Ereignis geschlossen.',
-    'KD wurde wegen fehlender Daten angeschrieben',
 ];
 
 const contact = document.getElementById('contact');
@@ -63,14 +62,8 @@ eventList.id = 'eventList';
 const oldDate = document.createElement('div'); 
 oldDate.id = 'oldDate'; 
 oldDateText = `
+(Please confirm with the Fristlieste)
 6 weeks: ${getFormattedDate(sixWeeksAgo)}`;
-// oldDateText = `
-// 17 days:
-// ${getFormattedDate(plusSeventeenDay)}
-// 10 days:
-// ${getFormattedDate(plusTenDaysAgo)}
-// 6 weeks: 
-// ${getFormattedDate(sixWeeksAgo)}`
 oldDate.innerText = oldDateText
 
 console.log(getFormattedDate(plusSeventeenDay));
