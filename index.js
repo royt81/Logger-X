@@ -16,7 +16,6 @@ const informations = [
 
 const contact = document.getElementById('contact');
 
-
 // the input department // 
 const nameInput = document.createElement('input');
 nameInput.id = 'nameInput';
@@ -34,7 +33,6 @@ contact.appendChild(button);
 
 // == END == input department // 
 
-
 // the date department // 
 
 const today = new Date();
@@ -48,13 +46,13 @@ function getFormattedDate(date) {
 const dateToday = getFormattedDate(today);
 
 const sixWeeksAgo = new Date();
-sixWeeksAgo.setDate(sixWeeksAgo.getDate() - 6 * 7);
+sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
 
 const plusSeventeenDay = new Date();
-plusSeventeenDay.setDate(plusSeventeenDay.getDate() + 17);
+plusSeventeenDay.setDate(plusSeventeenDay.getDate() + (17 * 1.4));
 
 const plusTenDaysAgo = new Date();
-plusTenDaysAgo.setDate(plusTenDaysAgo.getDate() + 10);
+plusTenDaysAgo.setDate(plusTenDaysAgo.getDate() + (10 * 1.4));
 
 // == END == date department // 
 
@@ -65,13 +63,18 @@ eventList.id = 'eventList';
 const oldDate = document.createElement('div'); 
 oldDate.id = 'oldDate'; 
 oldDateText = `
-17 days:
-${getFormattedDate(plusSeventeenDay)}
-10 days:
-${getFormattedDate(plusTenDaysAgo)}
-6 weeks: 
-${getFormattedDate(sixWeeksAgo)}`
+6 weeks: ${getFormattedDate(sixWeeksAgo)}`;
+// oldDateText = `
+// 17 days:
+// ${getFormattedDate(plusSeventeenDay)}
+// 10 days:
+// ${getFormattedDate(plusTenDaysAgo)}
+// 6 weeks: 
+// ${getFormattedDate(sixWeeksAgo)}`
 oldDate.innerText = oldDateText
+
+console.log(getFormattedDate(plusSeventeenDay));
+console.log(getFormattedDate(plusTenDaysAgo));
 
 // == END == event list and old date department // 
 
