@@ -17,6 +17,40 @@ const informations = [
     'Zählerfoto, ÜP und Kündigungsbestätigung vom AV liegen im Archiv.'
 ];
 
+// the input department // 
+const contact = document.getElementById('contact');
+
+const nameInput = document.createElement('input');
+nameInput.id = 'nameInput';
+nameInput.placeholder = 'Your initials...'
+nameInput.className = 'contactObject';
+
+const button = document.createElement('button');
+button.id = 'button'; 
+button.className = 'contactObject';
+button.innerText = 'SUBMIT';
+button.addEventListener('click', run);
+contact.addEventListener('keydown', (event)=>{
+  if (event.defaultPrevented){
+    return;
+  }
+  switch (event.key){
+    case "Enter":
+      run();
+      break;
+      default:
+        return;
+  }
+  event.preventDefault();
+},
+true,
+)
+
+contact.appendChild(nameInput);
+contact.appendChild(button);
+
+// == END == input department // 
+
 // the date department // 
 
 const today = new Date();
@@ -105,39 +139,7 @@ async function main() {
 
 }
 
-// the input department // 
-const contact = document.getElementById('contact');
 
-const nameInput = document.createElement('input');
-nameInput.id = 'nameInput';
-nameInput.placeholder = 'Your initials...'
-nameInput.className = 'contactObject';
-
-const button = document.createElement('button');
-button.id = 'button'; 
-button.className = 'contactObject';
-button.innerText = 'SUBMIT';
-button.addEventListener('click', run);
-contact.addEventListener('keydown', (event)=>{
-  if (event.defaultPrevented){
-    return;
-  }
-  switch (event.key){
-    case "Enter":
-      run();
-      break;
-      default:
-        return;
-  }
-  event.preventDefault();
-},
-true,
-)
-
-contact.appendChild(nameInput);
-contact.appendChild(button);
-
-// == END == input department // 
 
 
 
