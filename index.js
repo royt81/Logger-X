@@ -122,19 +122,18 @@ async function getOldTime(gap) {
 async function main() {
   const formattedDateValue = await getOldTime(17);
   console.log('Formatted Date Value to use elsewhere:', formattedDateValue);
-  //return formattedDateValue;
-  const seventeenDays = await getOldTime(18)
-  const tenDays = await getOldTime(11)
+  const seventeenDays = await getOldTime(18);
+  const tenDays = await getOldTime(11);
 
-  const oldDate = document.createElement('div'); 
-  oldDate.id = 'oldDate'; 
+  const oldDate = document.getElementById('oldDate'); 
+  // oldDate.id = 'oldDate'; 
   oldDateText = `
   6 weeks: ${getFormattedDate(sixWeeksAgo)}
   +17 days: ${seventeenDays}
   +10 days: ${tenDays}
   `;
 
-  oldDate.innerText = oldDateText
+  oldDate.innerText = oldDateText;
   contact.appendChild(oldDate);
 
 }
@@ -168,7 +167,11 @@ function run() {
         item.innerText = message;
 		eventList.appendChild(item);
 	}
+  const placeHolderOldDates = document.createElement('div');
+  placeHolderOldDates.id = 'oldDate';
 	contact.appendChild(eventList);
+	contact.appendChild(placeHolderOldDates);
+
   main(); 
 
 }
