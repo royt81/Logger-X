@@ -12,12 +12,9 @@ const informations = [
     'KD wurde angeschrieben und Informiert', 
     'KD hat widerrufen/ gekündigt',
     'KD wurde nicht erreicht, daher Ereignis geschlossen.',
-<<<<<<< HEAD
     '7 abgelehnte WP, daher Ereignis geschlossen.',
     'KD wurde wegen fehlender Daten angeschrieben',
     'Zählerfoto, ÜP und Kündigungsbestätigung vom AV liegen im Archiv.'
-=======
->>>>>>> 1da4251793daa479528a1957c85ba00a9994362e
 ];
 
 // the date department // 
@@ -148,18 +145,6 @@ contact.appendChild(button);
 const eventList = document.createElement('div');
 eventList.id = 'eventList';
 
-<<<<<<< HEAD
-=======
-const oldDate = document.createElement('div'); 
-oldDate.id = 'oldDate'; 
-oldDateText = `
-(Please confirm with the Fristlieste)
-6 weeks: ${getFormattedDate(sixWeeksAgo)}`;
-oldDate.innerText = oldDateText
-
-console.log(getFormattedDate(plusSeventeenDay));
-console.log(getFormattedDate(plusTenDaysAgo));
->>>>>>> 1da4251793daa479528a1957c85ba00a9994362e
 
 // == END == event list and old date department // 
 
@@ -186,11 +171,4 @@ function run() {
 
 }
 
-<<<<<<< HEAD
 console.log(getFormattedDate(sixWeeksAgo));
-=======
-console.log(sixWeeksAgo)
-console.log(getFormattedDate(plusSeventeenDay))
-console.log(getFormattedDate(plusTenDaysAgo))
-		
->>>>>>> 1da4251793daa479528a1957c85ba00a9994362e
