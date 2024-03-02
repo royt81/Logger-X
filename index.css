@@ -8,9 +8,16 @@ body
 .contactObject
 
 #eventList
+
+#rightSideContact
+
 #oldDate
+.dateUnit
 .copyButton
 .item
+
+#shortcutsTable
+#shortcutButton
  */
 
 
@@ -59,25 +66,83 @@ body{
 }
 
 #eventList{
+    order: 0;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
     gap: 1vh;
 
 }
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    width: 50%;
+    height: 8vh;
+    border: 2 solid rgb(25, 25, 27);
+    border-radius: 5px;
+    font-family: monospace;
+    text-align: center;
+    border: 2px solid rgb(33, 28, 19);
+
+}
+.item:hover{
+    cursor: pointer;
+    background-color: rgb(191, 211, 170) !important;
+    border: 2px solid rgb(200, 197, 193);
+
+}
+
+#rightSideContact{
+
+    height: 100%;
+    width: 80%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+
+    padding: 5vw;
+    gap: 3vh;
+}
+
+
 #oldDate{
-    text-align:start;
-    padding: 5vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5%;
+    
+    text-align:center;
+    padding: 2vh;
     background-color: rgb(168, 99, 232);
-    width: 30%;
-    min-height: 50vh;
+    width: 80%;
+    height: 16vh;
 
     font-family: monospace;
     font-size: 3vh;
+    border: 2px solid;
     border-radius: 7px;
+
+}
+
+.dateUnit{
+    background-color: rgb(99, 93, 89, 0.5);
+    height: 30%;
+    border-radius: 5px;
+    border: 2px solid black;
+    color: rgb(4, 4, 4);
+}
+.dateUnit:hover{
+    cursor: pointer;
+    background-color: rgb(238, 25, 224,0.5) !important;
+    border: 2px solid rgb(181, 179, 177);
 
 }
 
@@ -100,18 +165,38 @@ body{
     background-color: rgb(191, 211, 170);
 } */
 
-.item{
+
+
+#shortcutsTable{
+
     display: flex;
-    align-items: center;
-    justify-content: center;    
-    width: 50%;
-    height: 8vh;
-    border: 2 solid rgb(25, 25, 27);
-    border-radius: 5px;
-    font-family: monospace;
+    flex-direction: column;
+    justify-content: space-around;
+    order: 2;
+    width: 80%;
+    padding: 2vh;
+    height: 80vh;
+    background-color: rgb(205, 231, 255);
+    opacity: 0.7;
+    border-radius: 3vh;
+}
+
+.shortcutButton{
+    padding: 0.5vh;
+    margin: 1vh;
     text-align: center;
+    background-color: rgb(43, 122, 226);
+    opacity: 0.8;
+    font-family: monospace;
+    font-size: 6vh;
+
+    border: 2px solid rgb(33, 28, 19);
+    border-radius: 3vh;
+    min-height: 10%;
 }
-.item:hover{
+.shortcutButton:hover{
     cursor: pointer;
-    background-color: rgb(191, 211, 170) !important;
+    background-color: rgb(173, 175, 170) !important;
 }
+
+

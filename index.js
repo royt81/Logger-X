@@ -1,22 +1,4 @@
 
-// the order list // 
-
-const informations = [
-    "",
-    "Neuer WP mit E01 6 Wochen Frist",
-    "Neuer WP mit ZD2 6 Wochen Frist",
-    'neuer WP mit E03 zum laut 10 Werktagefrist.',
-    'Neuer WP mit E03 fristgerecht laut 17 Werktage',
-    'KD wurde wegen fehlender Daten angeschrieben',
-    'KD wurde erneut angeschrieben, da keine Antwort',
-    'KD wurde angeschrieben und Informiert', 
-    'KD hat widerrufen/ gekündigt',
-    'KD wurde nicht erreicht, daher Ereignis geschlossen.',
-    '7 abgelehnte WP, daher Ereignis geschlossen.',
-    'KD wurde wegen fehlender Daten angeschrieben',
-    'Zählerfoto, ÜP und Kündigungsbestätigung vom AV liegen im Archiv.'
-];
-
 // the input department // 
 const contact = document.getElementById('contact');
 
@@ -45,7 +27,6 @@ contact.addEventListener('keydown', (event)=>{
 },
 true,
 )
-
 contact.appendChild(nameInput);
 contact.appendChild(button);
 
@@ -71,7 +52,7 @@ function getFormattedDateForAPI(date) {
     return yyyy + '-' + mm + '-' + dd;
 }
 const dateAPI = getFormattedDateForAPI(today);
-console.log(dateAPI.toString())
+//console.log(dateAPI.toString())
 
 const sixWeeksAgo = new Date();
 sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
@@ -110,7 +91,7 @@ async function getOldTime(gap) {
     }
 
     const formattedDate = formatDate(result); 
-    console.log('Formatted Date:', formattedDate);
+    //console.log('Formatted Date:', formattedDate);
 
     return formattedDate;
   } catch (error) {
@@ -121,34 +102,42 @@ async function getOldTime(gap) {
 
 async function main() {
   const formattedDateValue = await getOldTime(17);
-  console.log('Formatted Date Value to use elsewhere:', formattedDateValue);
+  //console.log('Formatted Date Value to use elsewhere:', formattedDateValue);
   const seventeenDays = await getOldTime(18);
   const tenDays = await getOldTime(11);
 
   const oldDate = document.getElementById('oldDate'); 
-  // oldDate.id = 'oldDate'; 
-  oldDateText = `
-  6 weeks: ${getFormattedDate(sixWeeksAgo)}
-  +17 days: ${seventeenDays}
-  +10 days: ${tenDays}
-  `;
 
-  oldDate.innerText = oldDateText;
-  contact.appendChild(oldDate);
+  const dateUnitSixWeeks = document.createElement('div');
+  dateUnitSixWeeks.className = 'dateUnit';
+  dateUnitSixWeeks.innerText = `6 weeks: ${getFormattedDate(sixWeeksAgo)}`
+  dateUnitSixWeeks.addEventListener('click', ()=>{navigator.clipboard.writeText(getFormattedDate(sixWeeksAgo));})
 
+  const plusSeventeen = document.createElement('div');
+  plusSeventeen.className = 'dateUnit';
+  plusSeventeen.innerText = `+17 days: ${seventeenDays}`
+  plusSeventeen.addEventListener('click', ()=>{navigator.clipboard.writeText(seventeenDays);})
+
+  const plusTen = document.createElement('div');
+  plusTen.className = 'dateUnit';
+  plusTen.innerText = `+10 days: ${tenDays}`
+  plusTen.addEventListener('click', ()=>{navigator.clipboard.writeText(tenDays);})
+
+  
+  oldDate.appendChild(dateUnitSixWeeks)
+  oldDate.appendChild(plusSeventeen)
+  oldDate.appendChild(plusTen)
+
+  const rightSideContact = document.getElementById('rightSideContact');
+  rightSideContact.appendChild(oldDate);
 }
 
-
-
-
-
 // event list and old date department // 
+
 const eventList = document.createElement('div');
 eventList.id = 'eventList';
 
-
 // == END == event list and old date department // 
-
 
 function run() {
 
@@ -168,12 +157,127 @@ function run() {
 		eventList.appendChild(item);
 	}
   const placeHolderOldDates = document.createElement('div');
+  const rightSideContact = document.createElement('div');
+  
+  rightSideContact.id = 'rightSideContact'; 
   placeHolderOldDates.id = 'oldDate';
-	contact.appendChild(eventList);
-	contact.appendChild(placeHolderOldDates);
+
+  rightSideContact.appendChild(placeHolderOldDates);
+  
+  contact.appendChild(eventList);
+	contact.appendChild(rightSideContact);
 
   main(); 
+  runShortcuts();
 
 }
 
-console.log(getFormattedDate(sixWeeksAgo));
+// console.log(getFormattedDate(sixWeeksAgo));
+
+// the Shortcut department // 
+
+function runShortcuts() {
+
+  console.log('shortcut level 1')
+
+  const rightSideContact = document.getElementById('rightSideContact'); 
+
+  const shortcutsTable = document.createElement('div');
+  shortcutsTable.id = 'shortcutsTable';
+
+  function createShortcutButton(name, language, phone){
+    const shortcutButton = document.createElement('div');
+    shortcutButton.className = 'shortcutButton';
+    shortcutButton.innerText = name;
+    shortcutButton.language = language;
+    shortcutButton.phone = phone;
+    shortcutsTable.appendChild(shortcutButton);
+
+    const date = new Date();
+    const dayToday = date.getDay();
+    console.log(dayToday)
+
+    const openning = `
+Hallo {%customer.firstName,fallback=%},
+Vielen Dank für deine Anfrage.
+Bitte entschuldige die verspätete Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.`
+
+const closingMonday = `
+Ich wünsche dir eine schöne Woche
+`
+
+const closingWE = `
+Ich wünsche dir ein schönes Wochenende
+`
+
+const closingNormalDay = `
+Ich wünsche dir einen schönen Tag
+`
+
+const telefonNote = `
+Hallo {%customer.firstName,fallback=%},
+
+Vielen Dank für das nette Gespräch
+`
+
+// English // 
+
+
+
+const closingMondayEnglish = `
+I wish you a great week
+`
+
+const closingWEEnglish = `
+I wish you a great weekend
+`
+
+const closingNormalDayEnglish = `
+I wish you a great day
+`
+
+const telefonNoteEnglish = `
+  Hello {%customer.firstName,fallback=%},
+
+  thank you for the nice chat.
+  `
+
+const openningEnglish = `
+Hello {%customer.firstName,fallback=%},
+thank you for your message.
+Please forgive our late response, we are dealing with a heavy email loud at the moment`
+
+    shortcutButton.copiText = 
+    `
+    ${shortcutButton.language == 'en' && !shortcutButton.phone ? openningEnglish 
+    : shortcutButton.language == 'de' && !shortcutButton.phone ? openning
+    : shortcutButton.language == 'en' && shortcutButton.phone ? telefonNoteEnglish
+    : shortcutButton.language == 'de' && shortcutButton.phone ? telefonNote 
+    : 'error: no opening found'}
+
+    ${shortcutButton.language == 'en' && dayToday == 1 ? closingMondayEnglish  
+    : shortcutButton.language == 'en' && dayToday == 5 ? closingWEEnglish
+    : shortcutButton.language == 'en' ? closingNormalDayEnglish
+    : shortcutButton.language == 'de' && dayToday == 1 ? closingMonday
+    : shortcutButton.language == 'de' && dayToday == 5 ? closingWE
+    : shortcutButton.language == 'de' ? closingNormalDay
+    : 'error: no closing tag found'} 
+    `
+
+    shortcutButton.addEventListener('click', ()=>{
+      navigator.clipboard.writeText(shortcutButton.copiText);
+    })
+
+  }
+
+  const openningEnglish = createShortcutButton('Opening English', 'en', false);
+  const openningDeutsch = createShortcutButton('Opening German', 'de', false);
+  const openningEnglishPhone = createShortcutButton('English-Phone', 'en', true);
+  const openningDeutschPhone = createShortcutButton('German-Phone', 'de', true);
+
+  
+
+
+
+  rightSideContact.appendChild(shortcutsTable);
+}
