@@ -18,6 +18,9 @@ body
 
 #shortcutsTable
 #shortcutButton
+.link-element
+
+.riminder-note
  */
 
 
@@ -199,4 +202,38 @@ body{
     background-color: rgb(173, 175, 170) !important;
 }
 
+
+.riminder-note {
+    background-color: aquamarine;
+    height: 2vh;
+    width: 90%;
+
+    border: 2px solid black;
+    border-radius: 4vh;
+}
+
+#enter-note-place{
+    background-color: burlywood;
+    height: 8vh;
+    width: 30%;
+
+    border-radius: 5vh;
+
+    position: absolute;
+    top: 110%;
+}
+
+.link-element{
+    text-align: center;
+    background-color: rgb(212, 168, 152);
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: monospace;
+    min-height: 7vh;
+    font-size: 5vh;
+}
+
+.link-element:hover{
+    background-color: lightskyblue;
+}
 

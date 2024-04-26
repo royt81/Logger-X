@@ -167,9 +167,10 @@ function run() {
   contact.appendChild(eventList);
 	contact.appendChild(rightSideContact);
 
-  main(); 
-  runShortcuts();
-
+  main();
+  //createRiminderList()
+  //runShortcuts();
+  createLinkList()
 }
 
 // console.log(getFormattedDate(sixWeeksAgo));
@@ -195,57 +196,57 @@ function runShortcuts() {
 
     const date = new Date();
     const dayToday = date.getDay();
-    console.log(dayToday)
+    //console.log(dayToday)
 
     const openning = `
-Hallo {%customer.firstName,fallback=%},
-Vielen Dank für deine Anfrage.
-Bitte entschuldige die verspätete Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.`
+    Hallo {%customer.firstName,fallback=%},
+    Vielen Dank für deine Anfrage.
+    Bitte entschuldige die verspätete Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.`
 
-const closingMonday = `
-Ich wünsche dir eine schöne Woche
-`
+    const closingMonday = `
+    Ich wünsche dir eine schöne Woche
+    `
 
-const closingWE = `
-Ich wünsche dir ein schönes Wochenende
-`
+    const closingWE = `
+    Ich wünsche dir ein schönes Wochenende
+    `
 
-const closingNormalDay = `
-Ich wünsche dir einen schönen Tag
-`
+    const closingNormalDay = `
+    Ich wünsche dir einen schönen Tag
+    `
 
-const telefonNote = `
-Hallo {%customer.firstName,fallback=%},
+    const telefonNote = `
+    Hallo {%customer.firstName,fallback=%},
 
-Vielen Dank für das nette Gespräch
-`
+    Vielen Dank für das nette Gespräch
+    `
 
-// English // 
+    // English // 
 
 
 
-const closingMondayEnglish = `
-I wish you a great week
-`
+    const closingMondayEnglish = `
+    I wish you a great week
+    `
 
-const closingWEEnglish = `
-I wish you a great weekend
-`
+    const closingWEEnglish = `
+    I wish you a great weekend
+    `
 
-const closingNormalDayEnglish = `
-I wish you a great day
-`
+    const closingNormalDayEnglish = `
+    I wish you a great day
+    `
 
-const telefonNoteEnglish = `
-  Hello {%customer.firstName,fallback=%},
+    const telefonNoteEnglish = `
+      Hello {%customer.firstName,fallback=%},
 
-  thank you for the nice chat.
-  `
+      thank you for the nice chat.
+      `
 
-const openningEnglish = `
-Hello {%customer.firstName,fallback=%},
-thank you for your message.
-Please forgive our late response, we are dealing with a heavy email loud at the moment`
+    const openningEnglish = `
+    Hello {%customer.firstName,fallback=%},
+    thank you for your message.
+    Please forgive our late response, we are dealing with a heavy email loud at the moment`
 
     shortcutButton.copiText = 
     `
@@ -275,9 +276,73 @@ Please forgive our late response, we are dealing with a heavy email loud at the 
   const openningEnglishPhone = createShortcutButton('English-Phone', 'en', true);
   const openningDeutschPhone = createShortcutButton('German-Phone', 'de', true);
 
+  rightSideContact.appendChild(shortcutsTable);
+}
+
+function createLinkList() {
+  console.log('shortcut level 3')
+
+  const rightSideContact = document.getElementById('rightSideContact'); 
+  const shortcutsTable = document.createElement('div');
+  shortcutsTable.id = 'shortcutsTable';
   
+  
+
+  
+  buildLink();
+  function buildLink() {
+    const linkList = [
+      ['https://cockpit.rabot-charge.de/search', 'Cockpit'],
+      ['https://secure.helpscout.net/', 'Healpscout'],
+      ['https://www.rabot-charge.de/?utm_source=google&utm_medium=cpc&utm_campaign=DE_ACT_Search_Brand&gad_source=1&gclid=EAIaIQobChMItq-WzvHIggMV1BGLCh14_A_LEAAYASAAEgLQ6PD_BwE', 'Rabot-Charge Homepage'],
+      ['https://www.check24.de/strom-gas/rabot-charge/', 'Check24 Rabot-Charge'],
+      ['https://www.iban-rechner.de/iban_validieren.html', 'IBAN Calculator'],
+      ['https://bdew-codes.de/Codenumbers/BDEWCodes/CodeOverview', 'BDEW-Codes'],
+      ['https://www.bundesnetzagentur.de/DE/Home/home_node.html', 'Bundesnetzagentur']
+    ];
+
+    for(let i=0; i<linkList.length; i++){
+      const link = document.createElement('div');
+      link.className = 'link-element';
+      const linkName = linkList[i][1];
+      const linkAdrress = linkList[i][0];
+      link.innerText = linkName;
+      link.addEventListener('click', ()=>{
+        window.open(linkAdrress, '_blank');
+      })
+      
+      shortcutsTable.appendChild(link);
+    }
+  }
 
 
 
   rightSideContact.appendChild(shortcutsTable);
+}
+
+function createRiminderList(){
+
+  const rightSideContact = document.getElementById('rightSideContact'); 
+
+  const riminderList = document.createElement('div');
+  riminderList.id = 'shortcutsTable';
+
+  const note = document.createElement('div');
+  note.className = 'riminder-note';
+
+
+  const enterNotePlace = document.createElement('div');
+  enterNotePlace.id = 'enter-note-place';
+
+  const noteInput = document.createElement('input');
+  noteInput.id = 'note-input';
+
+  enterNotePlace.appendChild(noteInput)
+
+  riminderList.appendChild(enterNotePlace);
+
+
+  rightSideContact.appendChild(riminderList);
+
+
 }
