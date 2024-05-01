@@ -2,6 +2,7 @@
 
 const informations = [
     "",
+    "KD teilt ZS mit. ZN: Datum: ZS:",
     "Neuer WP mit E01 6 Wochen Frist",
     "Neuer WP mit ZD2 6 Wochen Frist",
     'neuer WP mit E03 zum laut 10 Werktagefrist.',

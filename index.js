@@ -30,10 +30,6 @@ true,
 contact.appendChild(nameInput);
 contact.appendChild(button);
 
-// == END == input department // 
-
-// the date department // 
-
 const today = new Date();
 console.log(today)
 function getFormattedDate(date) {
@@ -132,48 +128,65 @@ async function main() {
   rightSideContact.appendChild(oldDate);
 }
 
-// event list and old date department // 
-
-const eventList = document.createElement('div');
-eventList.id = 'eventList';
-
-// == END == event list and old date department // 
-
 function run() {
 
   contact.innerHTML = "";
   const workerName = nameInput.value;
 
-	for( let i=0; i< informations.length; i++){
+  creatCopyPasteList();
+  function creatCopyPasteList(){
+    const eventList = document.createElement('div');
+    eventList.id = 'eventList';
 
-        const item = document.createElement('div');
-        i%2 == 0 ? item.style.backgroundColor = 'lightGray' : item.style.backgroundColor = 'lightBlue';
-        item.className = 'item';
-        const message =  `${dateToday} ${workerName}: ${informations[i]}`;
-        item.addEventListener('click', ()=>{
-            navigator.clipboard.writeText(message);
-        })
-        item.innerText = message;
-		eventList.appendChild(item);
-	}
+    for( let i=0; i< informations.length; i++){
+
+      const item = document.createElement('div');
+      i%2 == 0 ? item.style.backgroundColor = 'lightGray' : item.style.backgroundColor = 'lightBlue';
+      item.className = 'item';
+      const message =  `${dateToday} ${workerName}: ${informations[i]}`;
+      item.addEventListener('click', ()=>{
+        navigator.clipboard.writeText(message);
+      })
+      item.innerText = message;
+      eventList.appendChild(item);
+    }
+    contact.appendChild(eventList);
+  }
+
+	
   const placeHolderOldDates = document.createElement('div');
   const rightSideContact = document.createElement('div');
+  const germanPhoneticAlphabet = document.createElement('div');
   
   rightSideContact.id = 'rightSideContact'; 
   placeHolderOldDates.id = 'oldDate';
+  germanPhoneticAlphabet.id = 'germanPhoneticAlphabet';
 
+  germanPhoneticAlphabet.innerText = 'German Phonetic';
+
+  germanPhoneticAlphabet.addEventListener('mouseover', ()=>{
+    const phoneticList = document.createElement('div');
+    phoneticList.id = 'phoneticList';
+    const dFA = document.createElement('img');
+    dFA.id = 'dFA';
+    dFA.src = '/favicon/DFA1.png';
+    phoneticList.appendChild(dFA);
+    contact.appendChild(phoneticList);
+  })
+  germanPhoneticAlphabet.addEventListener('mouseout', ()=>{
+    const phoneticList = document.getElementById('phoneticList');
+    contact.removeChild(phoneticList);
+  })
+
+  rightSideContact.appendChild(germanPhoneticAlphabet);
   rightSideContact.appendChild(placeHolderOldDates);
-  
-  contact.appendChild(eventList);
+
 	contact.appendChild(rightSideContact);
 
   main();
-  //createRiminderList()
   //runShortcuts();
   createLinkList()
 }
-
-// console.log(getFormattedDate(sixWeeksAgo));
 
 // the Shortcut department // 
 
@@ -280,20 +293,17 @@ function runShortcuts() {
 }
 
 function createLinkList() {
-  console.log('shortcut level 3')
+  //cdonsole.log('shortcut level 3')
 
   const rightSideContact = document.getElementById('rightSideContact'); 
   const shortcutsTable = document.createElement('div');
   shortcutsTable.id = 'shortcutsTable';
   
-  
-
-  
   buildLink();
   function buildLink() {
     const linkList = [
       ['https://cockpit.rabot-charge.de/search', 'Cockpit'],
-      ['https://secure.helpscout.net/', 'Healpscout'],
+      ['https://secure.helpscout.net/', 'Helpscout'],
       ['https://www.rabot-charge.de/?utm_source=google&utm_medium=cpc&utm_campaign=DE_ACT_Search_Brand&gad_source=1&gclid=EAIaIQobChMItq-WzvHIggMV1BGLCh14_A_LEAAYASAAEgLQ6PD_BwE', 'Rabot-Charge Homepage'],
       ['https://www.check24.de/strom-gas/rabot-charge/', 'Check24 Rabot-Charge'],
       ['https://www.iban-rechner.de/iban_validieren.html', 'IBAN Calculator'],
@@ -310,39 +320,9 @@ function createLinkList() {
       link.addEventListener('click', ()=>{
         window.open(linkAdrress, '_blank');
       })
-      
       shortcutsTable.appendChild(link);
     }
   }
-
-
-
   rightSideContact.appendChild(shortcutsTable);
 }
 
-function createRiminderList(){
-
-  const rightSideContact = document.getElementById('rightSideContact'); 
-
-  const riminderList = document.createElement('div');
-  riminderList.id = 'shortcutsTable';
-
-  const note = document.createElement('div');
-  note.className = 'riminder-note';
-
-
-  const enterNotePlace = document.createElement('div');
-  enterNotePlace.id = 'enter-note-place';
-
-  const noteInput = document.createElement('input');
-  noteInput.id = 'note-input';
-
-  enterNotePlace.appendChild(noteInput)
-
-  riminderList.appendChild(enterNotePlace);
-
-
-  rightSideContact.appendChild(riminderList);
-
-
-}

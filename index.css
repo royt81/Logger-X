@@ -10,6 +10,7 @@ body
 #eventList
 
 #rightSideContact
+#germanPhoneticAlphabet
 
 #oldDate
 .dateUnit
@@ -114,6 +115,50 @@ body{
     gap: 3vh;
 }
 
+#germanPhoneticAlphabet{
+    background-color:darkseagreen; 
+    width: 80%;
+    min-height: 5vh;
+    position: relative;
+    border: 2px solid;
+    border-radius: 1vh;
+
+    font-size: 5vh;
+    font-family: monospace;
+    text-align: center;
+}
+
+#germanPhoneticAlphabet:hover{
+    background-color: darkgoldenrod;
+    cursor: pointer;
+}
+
+#phoneticList{
+    width: 40vw;
+    height: 95vh;
+    background-color: #475a46cc;
+
+    position: fixed;
+    bottom: 5vh;
+    right: 40vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid black;
+    border-radius: 3vh;
+
+    box-shadow: 3vh 2vh 6vh; 
+}
+
+#dFA{
+    width: 90%;
+    height: 90%;
+
+    border: 1px solid black;
+    border-radius: 3vh;
+}
 
 #oldDate{
 
@@ -234,6 +279,7 @@ body{
 }
 
 .link-element:hover{
+    cursor: pointer;
     background-color: lightskyblue;
 }
 
