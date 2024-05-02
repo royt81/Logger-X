@@ -169,7 +169,7 @@ function run() {
     phoneticList.id = 'phoneticList';
     const dFA = document.createElement('img');
     dFA.id = 'dFA';
-    dFA.src = document.location.origin + '/favicon/DFA1.png';
+    dFA.src = document.location.origin + '/favicon/DFA1.png?v=1';
     phoneticList.appendChild(dFA);
     contact.appendChild(phoneticList);
   })
