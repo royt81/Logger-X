@@ -258,7 +258,7 @@ function germanPhoneticAlphabet(){
 function creatCopyPasteList(){
 
   const eventList = document.getElementById('eventList');
-  const workerName = nameInput.value;
+  const workerName = nameInput.value.toUpperCase();
 
   for( let i=0; i< informations.length; i++){
 
