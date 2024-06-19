@@ -195,7 +195,7 @@ function runMPCalculation(){
 
   const result = ((valueEnd - (valueBase * mwst))/(valueWork * mwst)) * 12
 
-  inputElements.innerHTML = Math.round(result);
+  inputElements.innerHTML = `Annual Consumption: ${Math.round(result)} kWh`;
   calculate.innerText = 'Run Again';
   calculate.addEventListener('click', ()=>{
     createMPCalculator()
