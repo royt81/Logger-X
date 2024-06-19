@@ -263,7 +263,8 @@ body{
     order: 4;
     width: 80%;
     height: 25vh;
-    background-color: rgb(85, 87, 71);
+    background-color: rgb(110, 98, 72);
+    border: 2px solid rgb(44, 42, 42);
     border-radius: 3vh;
 
     display: flex;
@@ -275,13 +276,14 @@ body{
 
 #inputElements{
 
-    font-size: 4vh;
+    font-size: 6vh;
     font-family: monospace;
     color: beige;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 0.5vh;
 }
 
 .MPCalculatorInput{
@@ -290,6 +292,7 @@ body{
     border-radius: 1vh;
     text-align: center;
     font-family: monospace;
+    border: 2px solid;
 }
 
 #calculate{
@@ -300,6 +303,7 @@ body{
     text-align: center;
     font-family: monospace;
     font-size: 6vh;
+    border: 2px solid;
 }
 
 #calculate:hover{
