@@ -1,10 +1,11 @@
 
-// the input department // 
+// the input department // shortcutsTable
 const contact = document.getElementById('contact');
 
 const nameInput = document.createElement('input');
 nameInput.id = 'nameInput';
-nameInput.placeholder = 'Your initials...'
+nameInput.className = 'shadow';
+nameInput.placeholder = 'Your initials...';
 nameInput.className = 'contactObject';
 
 const button = document.createElement('button');
@@ -32,6 +33,7 @@ contact.appendChild(button);
 
 const today = new Date();
 console.log(today)
+
 function getFormattedDate(date) {
     const dd = String(date.getDate()).padStart(2, '0');
     const mm = String(date.getMonth() + 1).padStart(2, '0'); 
@@ -48,10 +50,6 @@ function getFormattedDateForAPI(date) {
     return yyyy + '-' + mm + '-' + dd;
 }
 const dateAPI = getFormattedDateForAPI(today);
-//console.log(dateAPI.toString())
-
-const sixWeeksAgo = new Date();
-sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
 
 async function getOldTime(gap) {
   const today = new Date();
@@ -95,10 +93,122 @@ async function getOldTime(gap) {
     return null; 
   }
 }
+function run() {
 
-async function main() {
+  contact.innerHTML = "";
+  
+  declareSections();  
+  setUpOldDaysList();
+  //runShortcuts();
+  createLinkList();
+  //runBoredText();
+  germanPhoneticAlphabet();
+  //singHaiku();
+  creatCopyPasteList();
+  createMPCalculator();
+}
+
+function declareSections(){
+
+  const MPCalculator = document.createElement('div');
+  const placeHolderOldDates = document.createElement('div');
+  // const placeholderBoredtext = document.createElement('div');
+  const germanPhoneticAlphabet = document.createElement('div');
+  const shortcutsTable = document.createElement('div');
+  const eventList = document.createElement('div');
+  const rightSideContact = document.createElement('div');
+  const leftSideContact = document.createElement('div');
+
+  MPCalculator.id = 'MPCalculator'; 
+  eventList.id = 'eventList';
+  shortcutsTable.id = 'shortcutsTable';
+  rightSideContact.id = 'rightSideContact';
+  leftSideContact.id = 'leftSideContact';
+  placeHolderOldDates.id = 'oldDate';
+  // placeholderBoredtext.id = 'placeholderBoredtext';
+  germanPhoneticAlphabet.id = 'germanPhoneticAlphabet';
+
+  rightSideContact.appendChild(germanPhoneticAlphabet);
+  rightSideContact.appendChild(placeHolderOldDates);
+  rightSideContact.appendChild(shortcutsTable);                                              
+  rightSideContact.appendChild(MPCalculator);                                              
+
+  leftSideContact.appendChild(eventList);
+
+  contact.appendChild(leftSideContact);
+  contact.appendChild(rightSideContact);
+  // contact.appendChild(placeholderBoredtext);
+
+}
+function createMPCalculator(){
+
+  const MPCalculator = document.getElementById('MPCalculator');
+  MPCalculator.innerHTML = '';
+
+  const inputElements = document.createElement('div'); 
+  const calculate = document.createElement('div'); 
+
+  const endPrice = document.createElement('input'); 
+  const basePrice = document.createElement('input'); 
+  const workPrice = document.createElement('input');
+
+  inputElements.id = 'inputElements';
+  calculate.id = 'calculate';
+  calculate.innerText = 'Calculate';
+  calculate.addEventListener('click', ()=>{
+    runMPCalculation();
+  })
+
+  endPrice.className = 'MPCalculatorInput';
+  endPrice.id = 'endPrice';
+  basePrice.className = 'MPCalculatorInput';
+  basePrice.id = 'basePrice';
+  workPrice.className = 'MPCalculatorInput';
+  workPrice.id = 'workPrice'; 
+
+  endPrice.placeholder = 'End Price';
+  basePrice.placeholder = 'Base Price'; 
+  workPrice.placeholder = 'Work Price';
+
+  inputElements.appendChild(endPrice); 
+  inputElements.appendChild(basePrice); 
+  inputElements.appendChild(workPrice); 
+
+  MPCalculator.appendChild(inputElements);
+  MPCalculator.appendChild(calculate);
+}
+
+function runMPCalculation(){
+
+  const mwst = 1.19; 
+
+  const inputElements = document.getElementById('inputElements');
+  const calculate = document.getElementById('calculate');
+
+  const endPrice = document.getElementById('endPrice'); 
+  const basePrice = document.getElementById('basePrice');
+  const workPrice = document.getElementById('workPrice');
+
+  const valueWork = workPrice.value; 
+  const valueBase = basePrice.value; 
+  const valueEnd = endPrice.value; 
+
+  const result = ((valueEnd - (valueBase * mwst))/(valueWork * mwst)) * 12
+
+  inputElements.innerHTML = Math.round(result);
+  calculate.innerText = 'Run Again';
+  calculate.addEventListener('click', ()=>{
+    createMPCalculator()
+  })
+  console.log(result);
+
+}
+
+async function setUpOldDaysList() {
+  const sixWeeksAgo = new Date();
+  sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
+
   const formattedDateValue = await getOldTime(17);
-  //console.log('Formatted Date Value to use elsewhere:', formattedDateValue);
   const seventeenDays = await getOldTime(18);
   const tenDays = await getOldTime(11);
 
@@ -119,7 +229,6 @@ async function main() {
   plusTen.innerText = `+10 days: ${tenDays}`
   plusTen.addEventListener('click', ()=>{navigator.clipboard.writeText(tenDays);})
 
-  
   oldDate.appendChild(dateUnitSixWeeks)
   oldDate.appendChild(plusSeventeen)
   oldDate.appendChild(plusTen)
@@ -128,67 +237,42 @@ async function main() {
   rightSideContact.appendChild(oldDate);
 }
 
-function run() {
-
-  contact.innerHTML = "";
-  const workerName = nameInput.value;
-
-  creatCopyPasteList();
-  function creatCopyPasteList(){
-    const eventList = document.createElement('div');
-    eventList.id = 'eventList';
-
-    for( let i=0; i< informations.length; i++){
-
-      const item = document.createElement('div');
-      i%2 == 0 ? item.style.backgroundColor = 'lightGray' : item.style.backgroundColor = 'lightBlue';
-      item.className = 'item';
-      const message =  `${dateToday} ${workerName}: ${informations[i]}`;
-      item.addEventListener('click', ()=>{
-        navigator.clipboard.writeText(message);
-      })
-      item.innerText = message;
-      eventList.appendChild(item);
-    }
-    contact.appendChild(eventList);
-  }
-
-	
-  const placeHolderOldDates = document.createElement('div');
-  const rightSideContact = document.createElement('div');
-  const germanPhoneticAlphabet = document.createElement('div');
-  
-  rightSideContact.id = 'rightSideContact'; 
-  placeHolderOldDates.id = 'oldDate';
-  germanPhoneticAlphabet.id = 'germanPhoneticAlphabet';
-
+function germanPhoneticAlphabet(){
+  const germanPhoneticAlphabet = document.getElementById('germanPhoneticAlphabet');
   germanPhoneticAlphabet.innerText = 'German Phonetic';
 
   germanPhoneticAlphabet.addEventListener('mouseover', ()=>{
-    const phoneticList = document.createElement('div');
-    phoneticList.id = 'phoneticList';
-    const dFA = document.createElement('img');
-    dFA.id = 'dFA';
-    dFA.src = './favicon/DFA2.png?v=1';
-    phoneticList.appendChild(dFA);
-    contact.appendChild(phoneticList);
+  const phoneticList = document.createElement('div');
+  phoneticList.id = 'phoneticList';
+  const dFA = document.createElement('img');
+  dFA.id = 'dFA';
+  dFA.src = './favicon/DFA2.png?v=1';
+  phoneticList.appendChild(dFA);
+  contact.appendChild(phoneticList);
   })
   germanPhoneticAlphabet.addEventListener('mouseout', ()=>{
-    const phoneticList = document.getElementById('phoneticList');
-    contact.removeChild(phoneticList);
-  })
-
-  rightSideContact.appendChild(germanPhoneticAlphabet);
-  rightSideContact.appendChild(placeHolderOldDates);
-
-	contact.appendChild(rightSideContact);
-
-  main();
-  //runShortcuts();
-  createLinkList()
+  contact.removeChild(phoneticList);
+})
 }
 
-// the Shortcut department // 
+function creatCopyPasteList(){
+
+  const eventList = document.getElementById('eventList');
+  const workerName = nameInput.value;
+
+  for( let i=0; i< informations.length; i++){
+
+    const item = document.createElement('div');
+    i%2 == 0 ? item.style.backgroundColor = 'lightGray' : item.style.backgroundColor = 'lightBlue';
+    item.className = 'item';
+    const message =  `${dateToday} ${workerName}: ${informations[i]}`;
+    item.addEventListener('click', ()=>{
+      navigator.clipboard.writeText(message);
+    })
+    item.innerText = message;
+    eventList.appendChild(item);
+  }
+}
 
 function runShortcuts() {
 
@@ -196,8 +280,8 @@ function runShortcuts() {
 
   const rightSideContact = document.getElementById('rightSideContact'); 
 
-  const shortcutsTable = document.createElement('div');
-  shortcutsTable.id = 'shortcutsTable';
+  const s     = document.createElement('div');
+  s .id = 's';
 
   function createShortcutButton(name, language, phone){
     const shortcutButton = document.createElement('div');
@@ -205,7 +289,7 @@ function runShortcuts() {
     shortcutButton.innerText = name;
     shortcutButton.language = language;
     shortcutButton.phone = phone;
-    shortcutsTable.appendChild(shortcutButton);
+    s        .appendChild(shortcutButton);
 
     const date = new Date();
     const dayToday = date.getDay();
@@ -289,15 +373,12 @@ function runShortcuts() {
   const openningEnglishPhone = createShortcutButton('English-Phone', 'en', true);
   const openningDeutschPhone = createShortcutButton('German-Phone', 'de', true);
 
-  rightSideContact.appendChild(shortcutsTable);
+  rightSideContact.appendChild(s  );
 }
 
 function createLinkList() {
-  //cdonsole.log('shortcut level 3')
 
-  const rightSideContact = document.getElementById('rightSideContact'); 
-  const shortcutsTable = document.createElement('div');
-  shortcutsTable.id = 'shortcutsTable';
+  const shortcutsTable = document.getElementById('shortcutsTable');
   
   buildLink();
   function buildLink() {
@@ -306,6 +387,7 @@ function createLinkList() {
       ['https://secure.helpscout.net/', 'Helpscout'],
       ['https://www.rabot-charge.de/?utm_source=google&utm_medium=cpc&utm_campaign=DE_ACT_Search_Brand&gad_source=1&gclid=EAIaIQobChMItq-WzvHIggMV1BGLCh14_A_LEAAYASAAEgLQ6PD_BwE', 'Rabot-Charge Homepage'],
       ['https://www.check24.de/strom-gas/rabot-charge/', 'Check24 Rabot-Charge'],
+      ['https://www.rabot-charge.de/waermepumpentarif/', 'waermepumpentarif'],
       ['https://www.iban-rechner.de/iban_validieren.html', 'IBAN Calculator'],
       ['https://bdew-codes.de/Codenumbers/BDEWCodes/CodeOverview', 'BDEW-Codes'],
       ['https://www.bundesnetzagentur.de/DE/Home/home_node.html', 'Bundesnetzagentur']
@@ -323,6 +405,72 @@ function createLinkList() {
       shortcutsTable.appendChild(link);
     }
   }
-  rightSideContact.appendChild(shortcutsTable);
 }
 
+async function runBoredText(){
+
+  const placeholderBoredtext = document.getElementById('placeholderBoredtext');
+
+  fetch('http://www.boredapi.com/api/activity/')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const activity = data.activity;
+    placeholderBoredtext.innerText= data.activity;
+    console.log(activity); 
+  })
+  .catch(error => {
+    console.error('Things go bad!:', error);
+  });
+};
+async function singHaiku(){
+  //Haiku
+
+  const url = 'https://claude-3-haiku-ai.p.rapidapi.com/';
+  const options = {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'X-RapidAPI-Key': '3a36f5e67amshd9016e2e18744aap1f3a91jsn9aad55a7fab2',
+      'X-RapidAPI-Host': 'claude-3-haiku-ai.p.rapidapi.com'
+    },
+    body: JSON.stringify({
+      model: 'claude-3-haiku-20240307',
+      messages: [
+        {
+          role: 'user',
+          content: 'Hello'
+        }
+      ]
+    })
+  };
+
+  fetch(url, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch haiku');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+// fizzbuzz()
+function fizzbuzz(){
+  const resoult = [];
+  const min = 1;
+  const max = 100;
+  for(let i=min; i<max; i++){
+    i%3 == 0 && i%5 == 0 ? resoult.push('FizzBuzz') : i%3 == 0 ? resoult.push('Fizz') : i%5 == 0 ? resoult.push('Buzz') : resoult.push(i)
+  }
+  console.log(...resoult);
+}

@@ -9,6 +9,7 @@ body
 
 #eventList
 
+#leftSideContact
 #rightSideContact
 #germanPhoneticAlphabet
 
@@ -17,6 +18,9 @@ body
 .copyButton
 .item
 
+#placeholderBoredtext
+
+#MPCalculator
 #shortcutsTable
 #shortcutButton
 .link-element
@@ -24,6 +28,10 @@ body
 .riminder-note
  */
 
+ /* .shadow{
+    box-shadow: 2vh 2vh 5vh; 
+    ;
+ } */
 
 body{
     height: 100 vh;
@@ -54,10 +62,13 @@ body{
     text-align: center;
     height: 12vh;
     width: 40vw;
-    border: 3 solid rgb(29, 29, 29);
+    border: 3 solid rgb(155, 152, 152);
     border-radius: 5vw;
-    font-size: 9vh;
+    font-size: 7vh;
     margin: 3vh;
+    box-shadow: 1vh 1vh 2vh 1vh; 
+    font-family: monospace;
+
 }
 
 #nameInput{
@@ -70,7 +81,7 @@ body{
 }
 
 #eventList{
-    order: 0;
+    order: 2;
 
     display: flex;
     flex-direction: column;
@@ -101,7 +112,15 @@ body{
 
 }
 
+#leftSideContact{
+
+    width: 90%;
+    position: 2;
+}
+
 #rightSideContact{
+
+    position: 1;
 
     height: 100%;
     width: 80%;
@@ -116,6 +135,9 @@ body{
 }
 
 #germanPhoneticAlphabet{
+
+    order: 1;
+
     background-color:darkseagreen; 
     width: 80%;
     min-height: 5vh;
@@ -162,6 +184,8 @@ body{
 
 #oldDate{
 
+    order: 2;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -186,12 +210,34 @@ body{
     border-radius: 5px;
     border: 2px solid black;
     color: rgb(4, 4, 4);
+    transition: all 555ms;
+
 }
 .dateUnit:hover{
     cursor: pointer;
     background-color: rgb(238, 25, 224,0.5) !important;
     border: 2px solid rgb(181, 179, 177);
 
+}
+
+#placeholderBoredtext{
+
+    order: 4;
+
+    min-height: 20px;
+    width: 100vw;
+    background-color: rgb(66, 65, 64);
+    color: rgb(32, 32, 32);
+
+    position: absolute;
+    top: 200%;
+    left: 0;
+
+    text-align: center;
+    font-family: monospace;
+
+    border: 1px solid;
+    border-radius: 1px;
 }
 
 /* .copyButton{
@@ -213,14 +259,62 @@ body{
     background-color: rgb(191, 211, 170);
 } */
 
-
-
-#shortcutsTable{
+#MPCalculator{
+    order: 4;
+    width: 80%;
+    height: 25vh;
+    background-color: rgb(85, 87, 71);
+    border-radius: 3vh;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    order: 2;
+    align-items: center;
+    
+}
+
+#inputElements{
+
+    font-size: 4vh;
+    font-family: monospace;
+    color: beige;
+    display: flex;
+    flex-direction: row;
+}
+
+.MPCalculatorInput{
+    width: 30%;
+    height: 7vh;
+    border-radius: 1vh;
+    text-align: center;
+    font-family: monospace;
+}
+
+#calculate{
+    width: 90%;
+    height: 7vh;
+    background-color: bisque;
+    border-radius: 2vh;
+    text-align: center;
+    font-family: monospace;
+    font-size: 6vh;
+}
+
+#calculate:hover{
+    background-color: rgb(73, 106, 114);
+    color: rgb(221, 222, 223);
+    cursor: pointer;
+}
+
+
+
+#shortcutsTable{
+
+    order: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     width: 80%;
     padding: 2vh;
     height: 80vh;
