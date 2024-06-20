@@ -145,6 +145,7 @@ function createMPCalculator(){
   const MPCalculator = document.getElementById('MPCalculator');
   MPCalculator.innerHTML = '';
 
+  const warnningLabel = document.createElement('div');
   const inputElements = document.createElement('div'); 
   const calculate = document.createElement('div'); 
 
@@ -152,6 +153,8 @@ function createMPCalculator(){
   const basePrice = document.createElement('input'); 
   const workPrice = document.createElement('input');
 
+  warnningLabel.id = 'warnningLabel';
+  warnningLabel.innerText = 'Achtung: Diese Werte sind nur für Fixpreis-Tarifkunden geeignet';
   inputElements.id = 'inputElements';
   calculate.id = 'calculate';
   calculate.innerText = 'Calculate';
@@ -159,6 +162,7 @@ function createMPCalculator(){
     runMPCalculation();
   })
 
+ //MPCalculator.addEventListener()
   endPrice.className = 'MPCalculatorInput';
   endPrice.id = 'endPrice';
   basePrice.className = 'MPCalculatorInput';
@@ -166,14 +170,15 @@ function createMPCalculator(){
   workPrice.className = 'MPCalculatorInput';
   workPrice.id = 'workPrice'; 
 
-  endPrice.placeholder = 'End Price';
-  basePrice.placeholder = 'Base Price'; 
-  workPrice.placeholder = 'Work Price';
+  endPrice.placeholder = 'Desired monthly price in €';
+  basePrice.placeholder = 'Base Price in €'; 
+  workPrice.placeholder = 'Work Prices in ¢';
 
   inputElements.appendChild(endPrice); 
   inputElements.appendChild(basePrice); 
   inputElements.appendChild(workPrice); 
 
+  MPCalculator.appendChild(warnningLabel);
   MPCalculator.appendChild(inputElements);
   MPCalculator.appendChild(calculate);
 }
@@ -189,12 +194,19 @@ function runMPCalculation(){
   const basePrice = document.getElementById('basePrice');
   const workPrice = document.getElementById('workPrice');
 
-  const valueWork = workPrice.value; 
-  const valueBase = basePrice.value; 
-  const valueEnd = endPrice.value; 
+  const valueWork = parseGermanNumber(workPrice.value);
+  const valueBase = parseGermanNumber(basePrice.value);
+  const valueEnd = parseGermanNumber(endPrice.value.replace(/[^0-9]/g, '')); 
 
-  const result = ((valueEnd - (valueBase * mwst))/(valueWork * mwst)) * 12
+  function parseGermanNumber(value) {
+    let sanitizedString = value.replace(/[^0-9,\.]/g, '');
+    sanitizedString = sanitizedString.replace(/\./g, '');
+    sanitizedString = sanitizedString.replace(',', '.');
+    return parseFloat(sanitizedString);
+  }
 
+  const result = ((valueEnd - (valueBase * mwst))/((valueWork / 100) * mwst)) * 12
+  //work-price+base-price
   inputElements.innerHTML = `Annual Consumption: ${Math.round(result)} kWh`;
   calculate.innerText = 'Run Again';
   calculate.addEventListener('click', ()=>{

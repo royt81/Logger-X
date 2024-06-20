@@ -2,19 +2,23 @@
 
 const informations = [
     "",
-    "KD teilt ZS mit. ZN: Datum: ZS:",
-    "Neuer WP mit E01 6 Wochen Frist",
-    "Neuer WP mit ZD2 6 Wochen Frist",
-    'neuer WP mit E03 zum laut 10 Werktagefrist.',
-    'Neuer WP mit E03 fristgerecht laut 17 Werktage',
-    'KD wurde wegen fehlender Daten angeschrieben',
-    'KD wurde erneut angeschrieben, da keine Antwort',
-    'KD wurde angeschrieben und Informiert', 
-    'KD hat widerrufen/ gekündigt',
-    'KD wurde nicht erreicht, daher Ereignis geschlossen.',
-    '7 abgelehnte WP, daher Ereignis geschlossen.',
-    'KD wurde wegen fehlender Daten angeschrieben',
-    'Zählerfoto, ÜP und Kündigungsbestätigung vom AV liegen im Archiv.'
+    "Neuer WP mit E03 fristgerecht laut 10 Werktage.",
+    "Neuer WP mit E03 fristgerecht laut 17 Werktage.",
+    "neuer WP mit E03, da Vattenfall laut 10/ 17 Werktagefrist.",
+    "KD wurde wegen fehlender Daten angeschrieben.",
+    "KD wurde angeschrieben und Informiert.",
+    "Neuer WP mit ZD2, fristgerecht, bis zu 6 Wochen rückwirkend.",
+    "Neuer WP mit E01, fristgerecht, bis zu 6 Wochen rückwirkend.",
+    "KD ist bereits in delivery.",
+    "KD wurde erneut angeschrieben, da keine Antwort.",
+    "KD hat selbst widerrufen/ gekündigt.",
+    "Kunde wurde nicht erreicht, daher Ereignis auf erledigt gesetzt und Ereignis zum Versand des Ablehnungsschreibens angelegt.",
+    "wurde ans Invoice zur Korrektur weitergeleitet.",
+    "Hier liegt eine Zählerverwechslung vor. KD ist seit dem XX.XX.XXXX in delivery. Daher E01 fristgerecht, bis zu 6 Wochen rückwirkend.",
+    "erfolgloser Wechsel, KD wurde nicht erreicht.",
+    "erfolgloser Wechsel, 6 abgelehnte WPs.",
+    "Sophia über SLP zu RLM Kunde per Mail informiert.",
+    "KD teilt ZS mit. ZN: Datum: ZS:"
 ];
 
 const openning = `

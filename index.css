@@ -262,7 +262,7 @@ body{
 #MPCalculator{
     order: 4;
     width: 80%;
-    height: 25vh;
+    height: 30vh;
     background-color: rgb(110, 98, 72);
     border: 2px solid rgb(44, 42, 42);
     border-radius: 3vh;
@@ -272,6 +272,18 @@ body{
     justify-content: space-around;
     align-items: center;
     
+}
+
+#warnningLabel{
+    width: 80%;
+    min-height: 5vh;
+    font-size: 3vh;
+    color: rgb(24, 22, 22);
+    background-color: rgb(195, 178, 141);
+    border: 2px solid;
+    border-radius: 5px;
+    font-family: monospace;
+    text-align: center;
 }
 
 #inputElements{
@@ -294,6 +306,7 @@ body{
     text-align: center;
     font-family: monospace;
     border: 2px solid;
+    background-color: azure;
 }
 
 #calculate{
