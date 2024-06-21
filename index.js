@@ -154,7 +154,7 @@ function createMPCalculator(){
   const workPrice = document.createElement('input');
 
   warnningLabel.id = 'warnningLabel';
-  warnningLabel.innerText = 'Achtung: Diese Werte sind nur für Fixpreis-Tarifkunden geeignet';
+  warnningLabel.innerText = 'Achtung: Diese Werte sind nur für Fixpreis-Kunden geeignet!';
   inputElements.id = 'inputElements';
   calculate.id = 'calculate';
   calculate.innerText = 'Calculate';
@@ -170,9 +170,9 @@ function createMPCalculator(){
   workPrice.className = 'MPCalculatorInput';
   workPrice.id = 'workPrice'; 
 
-  endPrice.placeholder = 'Desired monthly price in €';
-  basePrice.placeholder = 'Base Price in €'; 
-  workPrice.placeholder = 'Work Prices in ¢';
+  endPrice.placeholder = 'MP 100 €';
+  basePrice.placeholder = 'GP 8,45 €'; 
+  workPrice.placeholder = 'AP 22,74 ¢';
 
   inputElements.appendChild(endPrice); 
   inputElements.appendChild(basePrice); 
@@ -206,14 +206,12 @@ function runMPCalculation(){
   }
 
   const result = ((valueEnd - (valueBase * mwst))/((valueWork / 100) * mwst)) * 12
-  //work-price+base-price
   inputElements.innerHTML = `Annual Consumption: ${Math.round(result)} kWh`;
   calculate.innerText = 'Run Again';
   calculate.addEventListener('click', ()=>{
     createMPCalculator()
   })
   console.log(result);
-
 }
 
 async function setUpOldDaysList() {

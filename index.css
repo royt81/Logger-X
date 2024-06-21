@@ -96,13 +96,14 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;    
-    width: 50%;
+    width: 60%;
     height: 8vh;
     border: 2 solid rgb(25, 25, 27);
     border-radius: 5px;
     font-family: monospace;
     text-align: center;
     border: 2px solid rgb(33, 28, 19);
+    overflow: hidden;
 
 }
 .item:hover{
@@ -265,7 +266,8 @@ body{
     height: 30vh;
     background-color: rgb(110, 98, 72);
     border: 2px solid rgb(44, 42, 42);
-    border-radius: 3vh;
+    border-radius: 2vh;
+    padding: 1vh;
 
     display: flex;
     flex-direction: column;
@@ -275,7 +277,8 @@ body{
 }
 
 #warnningLabel{
-    width: 80%;
+    width: auto;
+    padding: 0.5vh;
     min-height: 5vh;
     font-size: 3vh;
     color: rgb(24, 22, 22);
