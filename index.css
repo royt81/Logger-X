@@ -21,6 +21,7 @@ body
 #placeholderBoredtext
 
 #MPCalculator
+#textBuilder
 #shortcutsTable
 #shortcutButton
 .link-element
@@ -328,6 +329,51 @@ body{
     color: rgb(221, 222, 223);
     cursor: pointer;
 }
+
+
+
+/* textBuilder */
+
+
+#textBuilder{
+    height: 80vh;
+    width: 15vw;
+    background-color: orange;
+
+    border-radius: 1vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 1%;
+    gap: 1vh;  
+}
+
+.textBuilderSection{
+
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0.5vh;
+    display: flex;
+    flex-direction: row;
+    height: 8vh;
+    width: 100%;
+}
+
+.textbuilderLabel{
+    background-color: rgb(158, 196, 229);
+}
+#phoneOrMail{
+    background-color: blueviolet;
+}
+#isLate{
+    background-color: skyblue;
+}
+
+
+
 
 
 

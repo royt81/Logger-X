@@ -106,10 +106,12 @@ function run() {
   //singHaiku();
   creatCopyPasteList();
   createMPCalculator();
+  //createTextBuilder();
 }
 
 function declareSections(){
 
+  const textBuilder = document.createElement('div');
   const MPCalculator = document.createElement('div');
   const placeHolderOldDates = document.createElement('div');
   // const placeholderBoredtext = document.createElement('div');
@@ -119,6 +121,7 @@ function declareSections(){
   const rightSideContact = document.createElement('div');
   const leftSideContact = document.createElement('div');
 
+  textBuilder.id = 'textBuilder';
   MPCalculator.id = 'MPCalculator'; 
   eventList.id = 'eventList';
   shortcutsTable.id = 'shortcutsTable';
@@ -137,9 +140,11 @@ function declareSections(){
 
   contact.appendChild(leftSideContact);
   contact.appendChild(rightSideContact);
+  // contact.appendChild(textBuilder);
   // contact.appendChild(placeholderBoredtext);
 
 }
+
 function createMPCalculator(){
 
   const MPCalculator = document.getElementById('MPCalculator');
@@ -181,6 +186,28 @@ function createMPCalculator(){
   MPCalculator.appendChild(warnningLabel);
   MPCalculator.appendChild(inputElements);
   MPCalculator.appendChild(calculate);
+
+  // MPCalculator.addEventListener('mouseover', ()=>{
+
+  //   console.log('mouseover MPC')
+  //   const MPCalculator = document.getElementById('MPCalculator')
+  //   MPCalculator.addEventListener('keydown', (event)=>{
+  //     if (event.defaultPrevented){
+  //       return;
+  //     }
+  //     switch (event.key){
+  //       case "Enter":
+  //         runMPCalculation();
+  //         console.log('enter')
+  //         break;
+  //         default:
+  //           return;
+  //     }
+  //     event.preventDefault();
+  //   },
+  //   true,
+  //   )
+  // })
 }
 
 function runMPCalculation(){
@@ -198,6 +225,22 @@ function runMPCalculation(){
   const valueBase = parseGermanNumber(basePrice.value);
   const valueEnd = parseGermanNumber(endPrice.value.replace(/[^0-9]/g, '')); 
 
+  if(workPrice.value == '' || valueBase.value == '' || valueEnd.value == ''){
+    
+    const calculate = document.getElementById('calculate');
+    const inputElements = document.getElementById('inputElements');
+    //const warnningLabel = document.getElementById('warnningLabel');
+    inputElements.innerText = 'Please fill all the fields'
+    //console.log('put a value, fool!')
+    calculate.innerText = 'Try Again';
+    calculate.removeEventListener('click', ()=>{
+    runMPCalculation();
+    })
+    calculate.addEventListener('click', ()=>{
+    createMPCalculator()
+    })
+    return;
+  }
   function parseGermanNumber(value) {
     let sanitizedString = value.replace(/[^0-9,\.]/g, '');
     sanitizedString = sanitizedString.replace(/\./g, '');
@@ -208,6 +251,9 @@ function runMPCalculation(){
   const result = ((valueEnd - (valueBase * mwst))/((valueWork / 100) * mwst)) * 12
   inputElements.innerHTML = `Annual Consumption: ${Math.round(result)} kWh`;
   calculate.innerText = 'Run Again';
+  calculate.removeEventListener('click', ()=>{
+    runMPCalculation();
+  })
   calculate.addEventListener('click', ()=>{
     createMPCalculator()
   })
@@ -436,7 +482,8 @@ async function runBoredText(){
   .catch(error => {
     console.error('Things go bad!:', error);
   });
-};
+}
+
 async function singHaiku(){
   //Haiku
 
@@ -474,7 +521,75 @@ async function singHaiku(){
     });
 }
 
-// fizzbuzz()
+function createTextBuilder(){
+
+  const textBuilder = document.getElementById('textBuilder');
+  const phoneOrMail = document.createElement('div'); 
+
+  // phone or mail
+
+  phoneOrMail.id = 'phoneOrMail'; 
+  phoneOrMail.className = 'textBuilderSection';
+
+  const phoneOrMailLabel = document.createElement('div');
+  phoneOrMailLabel.className = 'textbuilderLabel';
+  phoneOrMailLabel.className = 'textbuilderLabel';
+  phoneOrMailLabel.innerText = 'email/phone';
+
+  const phoneButton = document.createElement('input');
+  phoneButton.type = 'radio';
+  phoneButton.id = 'phoneButton';
+  phoneButton.className = 'textBuilderButton'; 
+  phoneButton.value = 'isPhone';
+  phoneButton.name = 'phoneOrMail';
+
+  const emailButton = document.createElement('input');
+  emailButton.type = 'radio';
+  emailButton.id = 'emailButton';
+  emailButton.className = 'textBuilderButton'; 
+  emailButton.value = 'isEmail';
+  emailButton.name = 'phoneOrMail';
+
+  phoneOrMail.appendChild(emailButton);
+  phoneOrMail.appendChild(phoneButton)
+  phoneOrMail.appendChild(phoneOrMailLabel)
+
+
+  // Am I late to respond? 
+
+  const isLate = document.createElement('div');
+  isLate.className = 'textBuilderSection';
+  isLate.id = 'isLate';
+
+  const lateButton = document.createElement('input');
+  // const lateButtonLabel = document.createElement('label');
+  // lateButtonLabel.name = 'lateOrNo';
+  // lateButtonLabel.innerText = 'Late?'
+  lateButton.type = 'radio';
+  lateButton.id = 'lateButton';
+  lateButton.className = 'textBuilderButton'; 
+  lateButton.value = 'islate';
+  lateButton.name = 'lateOrNo';
+
+  const notLateButton = document.createElement('input');
+  notLateButton.type = 'radio';
+  notLateButton.id = 'notLateButton';
+  notLateButton.className = 'textBuilderButton'; 
+  notLateButton.value = 'isnotLate';
+  notLateButton.name = 'lateOrNo';
+
+  isLate.appendChild(lateButton);
+  isLate.appendChild(notLateButton); 
+
+  textBuilder.appendChild(phoneOrMail);
+  textBuilder.appendChild(isLate);
+
+}
+
+function buildTextButton(name, type, ){
+  `${name}Button`   
+}
+
 function fizzbuzz(){
   const resoult = [];
   const min = 1;
@@ -484,3 +599,4 @@ function fizzbuzz(){
   }
   console.log(...resoult);
 }
+// fizzbuzz()
