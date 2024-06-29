@@ -18,6 +18,7 @@ const informations = [
     "erfolgloser Wechsel, KD wurde nicht erreicht.",
     "erfolgloser Wechsel, 6 abgelehnte WPs.",
     "Sophia über SLP zu RLM Kunde per Mail informiert.",
+    "KD teilt uns die richtige ZS mit: DD.MM.YYYY: XXX kWh DD.MM.YYYY: XXX kWh Bitte übernehmen, damit wir eine Rechnungskorrektur vornehmen können.
     "KD teilt ZS mit. ZN: Datum: ZS:"
 ];
 
