@@ -26,17 +26,33 @@ body
 #shortcutButton
 .link-element
 
+
 .riminder-note
+
+.flex-end
  */
 
- /* .shadow{
-    box-shadow: 2vh 2vh 5vh; 
-    ;
- } */
+
+
+ :root{
+    --section-wide: 80%;
+    --section-heigth:12vh;
+    --expended-section-heigth: 15vh;
+}
+
+*{
+    font-family: monospace;
+    transition: 200ms;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
 
 body{
-    height: 100 vh;
-    width: 100 vw;
     background-color: rgb(66, 65, 64);
     align-items: center;
     justify-content: center;
@@ -52,13 +68,8 @@ body{
     align-items: center;
     justify-content: center;
 
-    margin: 5vh;
-    padding: 3vh;
-
     animation: fadeInOut 1s ease-in-out;
-
 }
-
 .contactObject{
     text-align: center;
     height: 12vh;
@@ -68,22 +79,35 @@ body{
     font-size: 7vh;
     margin: 3vh;
     box-shadow: 1vh 1vh 2vh; 
-    font-family: monospace;
-
 }
-
 #nameInput{
     background-color: rgb(235, 223, 235);
 }
-
 #button{
     cursor: pointer;
     background-color: deepskyblue;
 }
 
-#eventList{
-    order: 2;
+#leftSideContact{
+    margin: auto;
+    width: 50%;
+    position: 2;
+    padding: 5vh 0 5vh;
+}
 
+#rightSideContact{
+    
+    margin-top: 40%;
+    width: 40%;
+
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2vh;
+}
+
+#eventList{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,7 +115,6 @@ body{
     width: 100%;
     height: 90%;
     gap: 1vh;
-
 }
 .item{
     display: flex;
@@ -101,62 +124,51 @@ body{
     height: 8vh;
     border: 2 solid rgb(25, 25, 27);
     border-radius: 5px;
-    font-family: monospace;
     text-align: center;
     border: 2px solid rgb(33, 28, 19);
     overflow: hidden;
-
 }
 .item:hover{
     cursor: pointer;
     background-color: rgb(191, 211, 170) !important;
     border: 2px solid rgb(200, 197, 193);
-
 }
-
-#leftSideContact{
-
-    width: 90%;
-    position: 2;
+#salesbutton{
+    
+    background-color: rgb(219, 150, 164);
+    color: aliceblue;
 }
-
-#rightSideContact{
-
-    position: 1;
-
-    height: 100%;
-    width: 80%;
-
+.saleSection{
+    height: 20vh;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    align-items:start;
+    justify-content: start;
+    text-align: left;
 
-    padding: 5vw;
-    gap: 3vh;
+    overflow: hidden;
 }
+/* #salesbutton:hover{
+    background-color: coral;
+} */
 
 #germanPhoneticAlphabet{
-
     order: 1;
 
     background-color:darkseagreen; 
-    width: 80%;
+    width: var(--section-wide);
     min-height: 5vh;
     position: relative;
     border: 2px solid;
     border-radius: 1vh;
 
     font-size: 5vh;
-    font-family: monospace;
     text-align: center;
 }
-
 #germanPhoneticAlphabet:hover{
     background-color: darkgoldenrod;
     cursor: pointer;
 }
-
 #phoneticList{
     width: 40vw;
     height: 95vh;
@@ -185,34 +197,29 @@ body{
 }
 
 #oldDate{
-
     order: 2;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 5%;
+    justify-content: space-around;
+    gap: 1vh;
     
     text-align:center;
     padding: 2vh;
-    background-color: rgb(168, 99, 232);
-    width: 80%;
-    height: 16vh;
+    background-color: rgb(153, 128, 175);
+    width: var(--section-wide);
+    height: 20vh;
 
-    font-family: monospace;
     font-size: 3vh;
     border: 2px solid;
-    border-radius: 7px;
-
+    border-radius: 2vh;
 }
-
 .dateUnit{
     background-color: rgb(99, 93, 89, 0.5);
     height: 30%;
     border-radius: 5px;
     border: 2px solid black;
     color: rgb(4, 4, 4);
-    transition: all 555ms;
 
 }
 .dateUnit:hover{
@@ -222,48 +229,9 @@ body{
 
 }
 
-#placeholderBoredtext{
-
-    order: 4;
-
-    min-height: 20px;
-    width: 100vw;
-    background-color: rgb(66, 65, 64);
-    color: rgb(32, 32, 32);
-
-    position: absolute;
-    top: 200%;
-    left: 0;
-
-    text-align: center;
-    font-family: monospace;
-
-    border: 1px solid;
-    border-radius: 1px;
-}
-
-/* .copyButton{
-
-    cursor: pointer;
-    position: absolute;
-    width: 7vw;
-    height: 5vh;
-    top: auto;
-    right: 10%;
-    margin-left: 5px;
-    border-radius: 5px;
-    color: rgb(52, 53, 54);
-    background-color: rgb(194, 193, 181);
-}
-.copyButton:hover{
-    width: 9vw;
-    height: 7vh;
-    background-color: rgb(191, 211, 170);
-} */
-
 #MPCalculator{
     order: 4;
-    width: 80%;
+    width: var(--section-wide);
     height: 30vh;
     background-color: rgb(110, 98, 72);
     border: 2px solid rgb(44, 42, 42);
@@ -273,12 +241,9 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
-    
+    align-items: center; 
 }
-
 #warnningLabel{
-    width: auto;
     padding: 0.5vh;
     min-height: 5vh;
     font-size: 3vh;
@@ -286,14 +251,11 @@ body{
     background-color: rgb(195, 178, 141);
     border: 2px solid;
     border-radius: 5px;
-    font-family: monospace;
     text-align: center;
 }
-
 #inputElements{
 
     font-size: 6vh;
-    font-family: monospace;
     color: beige;
     display: flex;
     flex-direction: row;
@@ -302,147 +264,274 @@ body{
     gap: 0.5vh;
     text-align: center;
 }
-
 .MPCalculatorInput{
     width: 30%;
     height: 7vh;
     border-radius: 1vh;
     text-align: center;
-    font-family: monospace;
     border: 2px solid;
     background-color: azure;
 }
-
 #calculate{
     width: 70%;
     height: 7vh;
     background-color: bisque;
     border-radius: 2vh;
     text-align: center;
-    font-family: monospace;
     font-size: 6vh;
     border: 2px solid;
 }
-
 #calculate:hover{
     background-color: rgb(73, 106, 114);
     color: rgb(221, 222, 223);
     cursor: pointer;
 }
 
-
-
-/* textBuilder */
-
-
-#textBuilder{
-    height: 80vh;
-    width: 15vw;
-    background-color: orange;
-
-    border-radius: 1vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-
-    padding: 1%;
-    gap: 1vh;  
-}
-
-.textBuilderSection{
-
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 0.5vh;
-    display: flex;
-    flex-direction: row;
-    height: 8vh;
-    width: 100%;
-}
-
-.textbuilderLabel{
-    background-color: rgb(158, 196, 229);
-}
-#phoneOrMail{
-    background-color: blueviolet;
-}
-#isLate{
-    background-color: skyblue;
-}
-
-
-
-
-
-
 #shortcutsTable{
-
     order: 3;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 80%;
+    width: var(--section-wide);
     padding: 2vh;
     height: 80vh;
-    background-color: rgb(205, 231, 255);
+    background-color: rgb(164, 191, 215);
     opacity: 0.7;
+    border: 2px black solid;
     border-radius: 3vh;
+    gap: 1vh;
 }
-
-.shortcutButton{
-    padding: 0.5vh;
-    margin: 1vh;
-    text-align: center;
-    background-color: rgb(43, 122, 226);
-    opacity: 0.8;
-    font-family: monospace;
-    font-size: 6vh;
-
-    border: 2px solid rgb(33, 28, 19);
-    border-radius: 3vh;
-    min-height: 10%;
-}
-.shortcutButton:hover{
-    cursor: pointer;
-    background-color: rgb(173, 175, 170) !important;
-}
-
-
-.riminder-note {
-    background-color: aquamarine;
-    height: 2vh;
-    width: 90%;
-
-    border: 2px solid black;
-    border-radius: 4vh;
-}
-
-#enter-note-place{
-    background-color: burlywood;
-    height: 8vh;
-    width: 30%;
-
-    border-radius: 5vh;
-
-    position: absolute;
-    top: 110%;
-}
-
 .link-element{
     text-align: center;
     background-color: rgb(212, 168, 152);
     border: 2px solid black;
     border-radius: 5px;
-    font-family: monospace;
     min-height: 7vh;
     font-size: 5vh;
 }
-
 .link-element:hover{
     cursor: pointer;
     background-color: lightskyblue;
 }
+
+.textBuilder{
+    order: 5;
+
+    width: calc(var(--section-wide)/2);
+
+    height: var(--section-heigth);
+    border: 2px solid black;
+    border-radius: 3vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-size: 3vh;
+
+    /* margin-top: 10vh; */
+}
+.textBuilder:hover{
+    transition: all 700ms;
+    background-color: rgba(184, 209, 185, 0.5);
+    cursor: pointer; 
+}
+.textBuilderExpend{
+    background-color: rgb(88, 77, 99);
+
+    margin: 0 0 40vh 0;
+    padding: 1v 0;
+
+    height: 50vh;
+
+    cursor: alias;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.textBuilderSection{
+    height: 7vh;
+    width: 90%;
+    background-color: darkslategray;
+    /* border: 2px solid black; */
+    border-radius: 1vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+
+    color: rgb(181, 181, 181);
+
+}
+.textBuilderSection:hover{
+    background-color: rgb(72, 38, 72);
+}
+.secondLineSubSection{
+    width: 30%;
+    height: 90%;
+
+    background-color: rgb(89, 105, 121);
+
+    border-radius: 1vh;
+
+    font-size: 3vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1vh;
+    padding: 1vh;
+}
+.secondLineSubSection:hover{
+    cursor: pointer;
+    background-color: blanchedalmond;
+    color: rgb(32, 31, 31);
+    font-size: 3vh;
+
+}
+
+.contentSectionExpend{
+    width: 35vw;
+    background-color: rgb(132, 240, 204, 0.7);
+    margin: 0 23vw 0 0;
+    justify-content: flex-start;
+
+    gap: 1vh;
+    padding: 1vh;
+}
+.contentSectionExpend:hover{
+    background-color: cadetblue;
+}
+.contentSectionSubSection{
+    height: 90%;
+    width: 7vw;
+
+    background-color: rgb(215, 174, 144);
+
+    border-radius: 1vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: rgb(69, 45, 45);
+
+    /* z-index: 1; */
+}
+.contentSectionSubSection:hover{
+    background-color: rgb(216, 188, 116);
+}
+.cSSSExpend{
+    /* height: 30vh; */
+    background-color: aquamarine;
+    margin: 25vh 0 0 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.CSSItem{
+
+    font-size: 3vh;
+    width: 90%;
+    height: 5vh;
+    background-color: rgb(200, 158, 240);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 1vh;
+    overflow: hidden;
+
+    margin: 2px;
+}
+.CSSItem:hover{
+    background-color: burlywood;
+    /* font-size: 3vh; */
+    width: auto;
+    height: 8vh;
+    z-index: 1;
+}
+
+.templatesSectionExpent{
+    width: 35vw;
+    background-color: cornflowerblue;
+    margin: 0 23vw 0 0;
+
+    justify-content: flex-start;
+
+    gap: 1vh;
+    padding: 1vh;
+}
+.templatesSectionExpent:hover{
+    background-color: rgb(135, 182, 128);
+}
+.tempSSection{
+    height: 90%;
+    width: 7vw;
+
+    background-color: rgb(215, 174, 144);
+
+    border-radius: 1vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: rgb(69, 45, 45);
+
+    /* z-index: 1; */
+}
+
+.addingSectionExpend{
+    width: 30vw;
+    background-color: aquamarine;
+    margin: 0 17vw 0 0;
+    justify-content: flex-start;
+
+    gap: 1vh;
+    padding: 1vh;
+}
+.addingSectionExpend:hover{
+    background-color: rgb(95, 160, 97);
+}
+
+
+#run{
+    background-color: rgb(76, 76, 76);
+    color: coral;
+}
+#run:hover{
+    cursor: pointer;
+    background-color: rgb(160, 160, 209);
+}
+#closeButton{
+    background-color: rgb(184, 113, 170);
+}
+#closeButton:hover{
+    cursor: pointer;
+    background-color: cornflowerblue;
+}
+
+.flex-end{
+    /* transition: all 2s; */
+    align-items: flex-end;
+}
+.center{
+    align-items: center;
+}
+
 

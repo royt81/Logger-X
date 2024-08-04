@@ -1,5 +1,5 @@
 
-// the input department // shortcutsTable
+// the input department // shortcutsTable//dateToday
 const contact = document.getElementById('contact');
 
 const nameInput = document.createElement('input');
@@ -32,7 +32,7 @@ contact.appendChild(nameInput);
 contact.appendChild(button);
 
 const today = new Date();
-console.log(today)
+//console.log(today)
 
 function getFormattedDate(date) {
     const dd = String(date.getDate()).padStart(2, '0');
@@ -99,7 +99,6 @@ function run() {
   
   declareSections();  
   setUpOldDaysList();
-  //runShortcuts();
   createLinkList();
   //runBoredText();
   germanPhoneticAlphabet();
@@ -128,21 +127,18 @@ function declareSections(){
   rightSideContact.id = 'rightSideContact';
   leftSideContact.id = 'leftSideContact';
   placeHolderOldDates.id = 'oldDate';
-  // placeholderBoredtext.id = 'placeholderBoredtext';
   germanPhoneticAlphabet.id = 'germanPhoneticAlphabet';
 
   rightSideContact.appendChild(germanPhoneticAlphabet);
   rightSideContact.appendChild(placeHolderOldDates);
   rightSideContact.appendChild(shortcutsTable);                                              
   rightSideContact.appendChild(MPCalculator);                                              
+  rightSideContact.appendChild(textBuilder);                                              
 
   leftSideContact.appendChild(eventList);
 
   contact.appendChild(leftSideContact);
   contact.appendChild(rightSideContact);
-  // contact.appendChild(textBuilder);
-  // contact.appendChild(placeholderBoredtext);
-
 }
 
 function createMPCalculator(){
@@ -167,7 +163,6 @@ function createMPCalculator(){
     runMPCalculation();
   })
 
- //MPCalculator.addEventListener()
   endPrice.className = 'MPCalculatorInput';
   endPrice.id = 'endPrice';
   basePrice.className = 'MPCalculatorInput';
@@ -187,29 +182,7 @@ function createMPCalculator(){
   MPCalculator.appendChild(inputElements);
   MPCalculator.appendChild(calculate);
 
-  // MPCalculator.addEventListener('mouseover', ()=>{
-
-  //   console.log('mouseover MPC')
-  //   const MPCalculator = document.getElementById('MPCalculator')
-  //   MPCalculator.addEventListener('keydown', (event)=>{
-  //     if (event.defaultPrevented){
-  //       return;
-  //     }
-  //     switch (event.key){
-  //       case "Enter":
-  //         runMPCalculation();
-  //         console.log('enter')
-  //         break;
-  //         default:
-  //           return;
-  //     }
-  //     event.preventDefault();
-  //   },
-  //   true,
-  //   )
-  // })
 }
-
 function runMPCalculation(){
 
   const mwst = 1.19; 
@@ -229,9 +202,7 @@ function runMPCalculation(){
     
     const calculate = document.getElementById('calculate');
     const inputElements = document.getElementById('inputElements');
-    //const warnningLabel = document.getElementById('warnningLabel');
     inputElements.innerText = 'Please fill all the fields'
-    //console.log('put a value, fool!')
     calculate.innerText = 'Try Again';
     calculate.removeEventListener('click', ()=>{
     runMPCalculation();
@@ -257,7 +228,8 @@ function runMPCalculation(){
   calculate.addEventListener('click', ()=>{
     createMPCalculator()
   })
-  console.log(result);
+  console.log(`((${valueEnd} - (${valueBase} * 1,19))/((${valueWork}/100) * 1,19))* 12 = ${result}`);
+
 }
 
 async function setUpOldDaysList() {
@@ -321,134 +293,42 @@ function creatCopyPasteList(){
     const item = document.createElement('div');
     i%2 == 0 ? item.style.backgroundColor = 'lightGray' : item.style.backgroundColor = 'lightBlue';
     item.className = 'item';
-    const message =  `${dateToday} ${workerName}: ${informations[i]}`;
+    const message =  `${dateToday} ${workerName}: ${informations[i][1]}`;
+    const name = `${dateToday} ${workerName}: ${informations[i][0]}`;
     item.addEventListener('click', ()=>{
       navigator.clipboard.writeText(message);
     })
-    item.innerText = message;
+    item.innerText = name;
     eventList.appendChild(item);
-  }
-}
-
-function runShortcuts() {
-
-  console.log('shortcut level 1')
-
-  const rightSideContact = document.getElementById('rightSideContact'); 
-
-  const s     = document.createElement('div');
-  s .id = 's';
-
-  function createShortcutButton(name, language, phone){
-    const shortcutButton = document.createElement('div');
-    shortcutButton.className = 'shortcutButton';
-    shortcutButton.innerText = name;
-    shortcutButton.language = language;
-    shortcutButton.phone = phone;
-    s        .appendChild(shortcutButton);
-
-    const date = new Date();
-    const dayToday = date.getDay();
-    //console.log(dayToday)
-
-    const openning = `
-    Hallo {%customer.firstName,fallback=%},
-    Vielen Dank für deine Anfrage.
-    Bitte entschuldige die verspätete Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.`
-
-    const closingMonday = `
-    Ich wünsche dir eine schöne Woche
-    `
-
-    const closingWE = `
-    Ich wünsche dir ein schönes Wochenende
-    `
-
-    const closingNormalDay = `
-    Ich wünsche dir einen schönen Tag
-    `
-
-    const telefonNote = `
-    Hallo {%customer.firstName,fallback=%},
-
-    Vielen Dank für das nette Gespräch
-    `
-
-    // English // 
-
-
-
-    const closingMondayEnglish = `
-    I wish you a great week
-    `
-
-    const closingWEEnglish = `
-    I wish you a great weekend
-    `
-
-    const closingNormalDayEnglish = `
-    I wish you a great day
-    `
-
-    const telefonNoteEnglish = `
-      Hello {%customer.firstName,fallback=%},
-
-      thank you for the nice chat.
-      `
-
-    const openningEnglish = `
-    Hello {%customer.firstName,fallback=%},
-    thank you for your message.
-    Please forgive our late response, we are dealing with a heavy email loud at the moment`
-
-    shortcutButton.copiText = 
-    `
-    ${shortcutButton.language == 'en' && !shortcutButton.phone ? openningEnglish 
-    : shortcutButton.language == 'de' && !shortcutButton.phone ? openning
-    : shortcutButton.language == 'en' && shortcutButton.phone ? telefonNoteEnglish
-    : shortcutButton.language == 'de' && shortcutButton.phone ? telefonNote 
-    : 'error: no opening found'}
-
-    ${shortcutButton.language == 'en' && dayToday == 1 ? closingMondayEnglish  
-    : shortcutButton.language == 'en' && dayToday == 5 ? closingWEEnglish
-    : shortcutButton.language == 'en' ? closingNormalDayEnglish
-    : shortcutButton.language == 'de' && dayToday == 1 ? closingMonday
-    : shortcutButton.language == 'de' && dayToday == 5 ? closingWE
-    : shortcutButton.language == 'de' ? closingNormalDay
-    : 'error: no closing tag found'} 
-    `
-
-    shortcutButton.addEventListener('click', ()=>{
-      navigator.clipboard.writeText(shortcutButton.copiText);
-    })
 
   }
+  const salesbutton = document.createElement('div');
+    salesbutton.classList.add('item');
+    salesbutton.id = 'salesbutton';
+    salesbutton.innerText = 'SALES';
 
-  const openningEnglish = createShortcutButton('Opening English', 'en', false);
-  const openningDeutsch = createShortcutButton('Opening German', 'de', false);
-  const openningEnglishPhone = createShortcutButton('English-Phone', 'en', true);
-  const openningDeutschPhone = createShortcutButton('German-Phone', 'de', true);
+    salesbutton.addEventListener('click', async () => {
+      const blob = new Blob([salesText], { type: 'text/html' });
+      const clipboardItem = new ClipboardItem({ 'text/html': blob });
 
-  rightSideContact.appendChild(s  );
+      try {
+        await navigator.clipboard.write([clipboardItem]);
+        console.log('Content copied to clipboard');
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    });
+
+    eventList.appendChild(salesbutton);
 }
 
 function createLinkList() {
 
   const shortcutsTable = document.getElementById('shortcutsTable');
   
-  buildLink();
-  function buildLink() {
-    const linkList = [
-      ['https://cockpit.rabot-charge.de/search', 'Cockpit'],
-      ['https://secure.helpscout.net/', 'Helpscout'],
-      ['https://www.rabot-charge.de/?utm_source=google&utm_medium=cpc&utm_campaign=DE_ACT_Search_Brand&gad_source=1&gclid=EAIaIQobChMItq-WzvHIggMV1BGLCh14_A_LEAAYASAAEgLQ6PD_BwE', 'Rabot-Charge Homepage'],
-      ['https://www.check24.de/strom-gas/rabot-charge/', 'Check24 Rabot-Charge'],
-      ['https://www.rabot-charge.de/waermepumpentarif/', 'waermepumpentarif'],
-      ['https://www.iban-rechner.de/iban_validieren.html', 'IBAN Calculator'],
-      ['https://bdew-codes.de/Codenumbers/BDEWCodes/CodeOverview', 'BDEW-Codes'],
-      ['https://www.bundesnetzagentur.de/DE/Home/home_node.html', 'Bundesnetzagentur']
-    ];
-
+ // buildLink();
+ // function buildLink() {
+    
     for(let i=0; i<linkList.length; i++){
       const link = document.createElement('div');
       link.className = 'link-element';
@@ -460,7 +340,7 @@ function createLinkList() {
       })
       shortcutsTable.appendChild(link);
     }
-  }
+  //}
 }
 
 async function runBoredText(){
@@ -524,79 +404,229 @@ async function singHaiku(){
 function createTextBuilder(){
 
   const textBuilder = document.getElementById('textBuilder');
-  const phoneOrMail = document.createElement('div'); 
+  textBuilder.classList.add('textBuilder'); 
+  textBuilder.innerText = greatingTextBuilder;
 
-  // phone or mail
+  textBuilder.addEventListener('click', ()=>{
+    textBuilder.innerHTML = '';
+    runTextBuilder();
+  })
+}
+function runTextBuilder(){
+  
+  const textBuilder = document.getElementById('textBuilder');
+  textBuilder.classList.add('textBuilderExpend')
+  createTextBuilderSections()
+}
+function createTextBuilderSections(){
+  const textBuilder = document.getElementById('textBuilder');
 
-  phoneOrMail.id = 'phoneOrMail'; 
-  phoneOrMail.className = 'textBuilderSection';
+  const closeButton = makeTBSection('closeButton');
+  closeButton.addEventListener('click',(event)=>{
+    event.stopPropagation();
+    shotdownTB();
+  })
 
-  const phoneOrMailLabel = document.createElement('div');
-  phoneOrMailLabel.className = 'textbuilderLabel';
-  phoneOrMailLabel.className = 'textbuilderLabel';
-  phoneOrMailLabel.innerText = 'email/phone';
+  const isEnglish = makeTBSection('to-English');
+  isEnglish.addEventListener('click',()=>{
+    isEnglish.innerHTML = '';
+    runEnglishSection();
+  })
 
-  const phoneButton = document.createElement('input');
-  phoneButton.type = 'radio';
-  phoneButton.id = 'phoneButton';
-  phoneButton.className = 'textBuilderButton'; 
-  phoneButton.value = 'isPhone';
-  phoneButton.name = 'phoneOrMail';
+  const sLSection = makeTBSection('second-line');
+  sLSection.addEventListener('mouseenter',()=>{
+    sLSection.innerHTML = '';
+    runSecondLineSection();
+  })
 
-  const emailButton = document.createElement('input');
-  emailButton.type = 'radio';
-  emailButton.id = 'emailButton';
-  emailButton.className = 'textBuilderButton'; 
-  emailButton.value = 'isEmail';
-  emailButton.name = 'phoneOrMail';
+  const content = makeTBSection('content');
+  content.addEventListener('mouseenter',()=>{
+    content.innerHTML = '';
+    runContentSection();
+  })
 
-  phoneOrMail.appendChild(emailButton);
-  phoneOrMail.appendChild(phoneButton)
-  phoneOrMail.appendChild(phoneOrMailLabel)
+  content.addEventListener('mouseleave',()=>{
+    content.classList.remove('contentSectionExpend')
+    content.innerHTML = '';
+    content.innerText = 'content'
+  })
+  
+  const addings = makeTBSection('addings');
+  addings.addEventListener('mouseenter',()=>{
+    addings.innerHTML = '';
+    runAddingsSection();
+  })
+  addings.addEventListener('mouseleave', ()=>{
+    addings.classList.remove('addingSectionExpend');
+  })
 
+  const runButton = makeTBSection('run');
+  runButton.addEventListener('click',(event)=>{
+    event.stopPropagation();
+    runTBButton();
+  })
 
-  // Am I late to respond? 
+  const templates = makeTBSection('templates');
+  templates.addEventListener('mouseenter',()=>{
+    templates.innerHTML = '';
+    runTemplatesSection();
+  })
+  templates.addEventListener('mouseleave', ()=>{
+    templates.classList.remove('templatesSectionExpent')
+  })
 
-  const isLate = document.createElement('div');
-  isLate.className = 'textBuilderSection';
-  isLate.id = 'isLate';
-
-  const lateButton = document.createElement('input');
-  // const lateButtonLabel = document.createElement('label');
-  // lateButtonLabel.name = 'lateOrNo';
-  // lateButtonLabel.innerText = 'Late?'
-  lateButton.type = 'radio';
-  lateButton.id = 'lateButton';
-  lateButton.className = 'textBuilderButton'; 
-  lateButton.value = 'islate';
-  lateButton.name = 'lateOrNo';
-
-  const notLateButton = document.createElement('input');
-  notLateButton.type = 'radio';
-  notLateButton.id = 'notLateButton';
-  notLateButton.className = 'textBuilderButton'; 
-  notLateButton.value = 'isnotLate';
-  notLateButton.name = 'lateOrNo';
-
-  isLate.appendChild(lateButton);
-  isLate.appendChild(notLateButton); 
-
-  textBuilder.appendChild(phoneOrMail);
-  textBuilder.appendChild(isLate);
-
+  textBuilder.appendChild(closeButton);
+  textBuilder.appendChild(isEnglish);
+  textBuilder.appendChild(sLSection);
+  textBuilder.appendChild(content);
+  //textBuilder.appendChild(addings);
+  textBuilder.appendChild(runButton);
+  textBuilder.appendChild(templates);
 }
 
-function buildTextButton(name, type, ){
-  `${name}Button`   
+function makeTBSection(name){
+  const section = document.createElement('div');
+  section.classList.add('textBuilderSection');
+  section.id = name;
+  section.innerText = name
+  section.addEventListener('mouseleave', ()=>{
+    section.innerHTML = name;
+  })
+  return section;
+}
+function shotdownTB(){
+  const textBuilder = document.getElementById('textBuilder');
+  //textBuilder.style.background = 'pink';
+  textBuilder.innerHTML = greatingTextBuilder; 
+  textBuilder.classList.remove('textBuilderExpend');
+  //textBuilder.className = 'textBuilder';
+  //console.log('TB is closed') 
 }
 
-function fizzbuzz(){
-  const resoult = [];
-  const min = 1;
-  const max = 100;
-  for(let i=min; i<max; i++){
-    i%3 == 0 && i%5 == 0 ? resoult.push('FizzBuzz') : i%3 == 0 ? resoult.push('Fizz') : i%5 == 0 ? resoult.push('Buzz') : resoult.push(i)
+function runEnglishSection(){
+  const section = document.getElementById('to-English');
+}
+
+function runSecondLineSection(){
+  const section = document.getElementById('second-line');
+
+  const phone = runSecondLineSubSection('phone');
+  const mail = runSecondLineSubSection('mail');
+  const fachabt = runSecondLineSubSection('FA');
+
+  section.appendChild(phone);
+  section.appendChild(mail);
+  section.appendChild(fachabt);
+}
+function runSecondLineSubSection(name){
+  const subSection = document.createElement('div');
+  subSection.classList.add('secondLineSubSection');
+  subSection.innerText = name;
+  return subSection
+}
+
+function runContentSection(){
+
+  const section = document.getElementById('content');
+  section.classList.add('contentSectionExpend');
+
+  for( let i=0; i<contentSectionList.length; i++){
+
+    const cSSID = `cSSID${i}`;
+
+    const contentSectionSubSection = document.createElement('div');
+    contentSectionSubSection.id = cSSID;
+    contentSectionSubSection.classList.add('contentSectionSubSection');
+    contentSectionSubSection.innerText = contentSectionList[i][0];
+    contentSectionSubSection.addEventListener('mouseenter', ()=>{
+      runCSSExpendList(cSSID, i);
+    })
+    contentSectionSubSection.addEventListener('mouseleave', ()=>{
+      contentSectionSubSection.classList.remove('cSSSExpend');
+      contentSectionSubSection.innerHTML = contentSectionList[i][0];
+      contentSectionSubSection.style.height = '90%';
+      contentSectionSubSection.style.margin = '0'; 
+    })
+
+    section.appendChild(contentSectionSubSection);
   }
-  console.log(...resoult);
 }
-// fizzbuzz()
+function runCSSExpendList(cSSID, listID){
+  const subSection = document.getElementById(cSSID);
+  subSection.innerHTML = ''; 
+  subSection.classList.add('cSSSExpend');
+  subSection.style.height =`${(contentSectionList[listID][1].length * 5)}vh`;
+  subSection.style.margin =`${(contentSectionList[listID][1].length * 5)/2}vh 0 0 0`;
+
+  for( let i=0; i<contentSectionList[listID][1].length; i++){
+
+    const subSectionItem = document.createElement('div');
+    subSectionItem.classList.add('CSSItem')
+    subSectionItem.innerText = contentSectionList[listID][1][i][0]
+
+    subSection.appendChild(subSectionItem);
+  }
+}
+
+function runAddingsSection(){
+  const section = document.getElementById('addings');
+  section.classList.add('addingSectionExpend');
+}//disabled
+
+function runTBButton(){
+  const textBuilder = document.getElementById('textBuilder');
+  textBuilder.classList.remove('textBuilderExpend');
+  textBuilder.innerHTML = '';
+
+  shotdownTB()
+  console.log('run button')
+}
+
+function runTemplatesSection(){
+  const section = document.getElementById('templates');
+  section.classList.add('templatesSectionExpent')
+
+  for(let i=0; i<templatesList.length; i++){
+    const temlateSectionID = `tempID${i}`;
+
+    const tempSSection = document.createElement('div');
+    tempSSection.id = temlateSectionID;
+    tempSSection.classList.add('tempSSection');
+    tempSSection.innerText = contentSectionList[i][0];
+    tempSSection.addEventListener('mouseenter', ()=>{
+      runTemplateExpendList(temlateSectionID, i);
+    })
+    tempSSection.addEventListener('mouseleave', ()=>{
+      tempSSection.classList.remove('cSSSExpend');
+      tempSSection.innerHTML = contentSectionList[i][0];
+      tempSSection.style.height = '90%';
+      tempSSection.style.margin = '0'; 
+    })
+
+    section.appendChild(tempSSection);
+  }
+}
+function runTemplateExpendList(temlateSectionID, listID){
+  const subSection = document.getElementById(temlateSectionID);
+  subSection.innerHTML = ''; 
+  subSection.classList.add('templateExpend');
+  subSection.style.height =`${(contentSectionList[listID][1].length * 5)}vh`;
+  subSection.style.margin =`0 0 ${(contentSectionList[listID][1].length * 5)/2}vh 0`;
+
+  for( let i=0; i<contentSectionList[listID][1].length; i++){
+
+    const subSectionItem = document.createElement('div');
+    subSectionItem.classList.add('CSSItem')
+    subSectionItem.innerText = contentSectionList[listID][1][i][0]
+
+    subSection.appendChild(subSectionItem);
+  }
+}
+
+console.log(dayToday)
+
+//const dailyEnding = 
+
+///
+
+
