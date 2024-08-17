@@ -59,7 +59,7 @@ html, body{
 
 body{
     background-color: rgb(66, 65, 64);
-    align-items: var(--section-background-color)
+    align-items: var(--section-background-color);
     justify-content: center;
 }
 
@@ -352,7 +352,7 @@ body{
     margin: 0 0 40vh 0;
     padding: 1v 0;
 
-    height: 50vh;
+    height: 55vh;
 
     cursor: alias;
 
@@ -377,16 +377,40 @@ body{
     text-align: center;
 
     color: rgb(181, 181, 181);
-
 }
 /* .textBuilderSection:hover{
     background-color: rgb(180, 177, 245);
 } */
-/* #to-English{
+/* 
+#to-English{textBuilderSection
     color: rgb(39, 39, 39);
+    textBuilderSection
 } */
+#to-English:hover{
+    background-color: rgb(137, 173, 215);
+}
+#isLate{
+    background-color: rgb(91, 129, 94);
+    width: 85%;
+    height: 5vh;
 
+    border-radius: 1vh;
 
+    font-size: 3vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1vh;
+    padding: 5px;
+
+    color: rgb(198, 208, 217);
+}
+#isLate:hover{
+    background-color: rgb(225, 195, 225);
+    color: rgb(107, 107, 107);
+}
 .secondLineSubSection{
     width: 30%;
     height: 90%;
@@ -441,7 +465,8 @@ body{
     color: rgb(69, 45, 45);
     text-align: center;
 
-    /* z-index: 1; */
+    /* z-index: 1;
+    english */
 }
 .contentSectionSubSection:hover{
     background-color: rgb(216, 188, 116);
@@ -513,7 +538,7 @@ body{
 }
 
 /* .addingSectionExpend{
-    width: 30vw;
+    width: 30vw;islate
     background-color: aquamarine;
     margin: 0 17vw 0 0;
     justify-content: flex-start;

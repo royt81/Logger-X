@@ -433,6 +433,15 @@ function createTextBuilderSections(){
     isEnglish.innerText = '';
     runEnglishSection();
   })
+  const isLateSection = document.createElement('div');
+  //isLateSection.classList.add('textBuilderSection');
+  isLateSection.id = 'isLate';
+  isLateSection.innerHTML = isLate[0][0];
+  isLateSection.addEventListener('click', ()=>{
+    isLateLine = `${isLate[0][1]}
+`
+  })
+
 
   const sLSection = makeTBSection('second-line', 'Second Line');
   sLSection.addEventListener('mouseenter',(event)=>{
@@ -474,6 +483,7 @@ function createTextBuilderSections(){
 
   textBuilder.appendChild(closeButton);
   textBuilder.appendChild(isEnglish);
+  textBuilder.appendChild(isLateSection);
   textBuilder.appendChild(sLSection);
   textBuilder.appendChild(content);
   textBuilder.appendChild(runButton);
@@ -496,11 +506,13 @@ function shotdownTB(){
   textBuilder.classList.remove('textBuilderExpend');
   extra = ''; 
   theContentLine = ''; 
+  isLateLine = ''; 
 }
 
 function runEnglishSection(){
   const section = document.getElementById('to-English');
   const sectionTemples = document.getElementById('templates');
+  const lateSection = document.getElementById('isLate');
 
   section.backgroundColor = 'pink' ? section.backgroundColor = 'orange' 
   : section.backgroundColor = 'pink';
@@ -513,6 +525,8 @@ function runEnglishSection(){
 
   theSecondLineList == secondLineDE ? (theSecondLineList = secondLineEN,theSecondLine = theSecondLineList[0]) 
   : (theSecondLineList = secondLineDE, theSecondLine = theSecondLineList[0]);
+
+  isLate == lateDE ? (isLate = lateEN, lateSection.innerHTML = 'Late Response') : (isLate = lateDE, lateSection.innerText = 'Verspätete Antwort');
 
   // theContentLineList == ichBrauche ? (theContentLineList == iNeed) 
   // : (theContentLineList = ichBrauche);
@@ -637,7 +651,7 @@ function runTBButton(){
   `${theFirstLine}
   
 ${theSecondLine}
-${isLate}
+${isLateLine}
 ${theContentLine}
 ${extra}
 ${theClosingLine}.`

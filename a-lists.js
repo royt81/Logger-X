@@ -197,7 +197,7 @@ const dailyClosing = closingList[todayNumber];
 
 /*
 function dailyClosingToday(){
-  const today = (new Date().getDay());
+  const today = (new Date().getDay());thank
   const dailyClosing = closingList[today];
   console.log(dailyClosing)
 
@@ -282,7 +282,7 @@ Solltest du weitere Fragen haben, komme gerne auf mich zu. Deine Email landet di
         ​
 ${dailyClosing}.`],
         
-        [runIcon('/img/email.png'), `Hallo {%customer.firstName,fallback=%},
+        [runIcon('img/email.png'), `Hallo {%customer.firstName,fallback=%},
         
 vielen Dank für deine Anfrage.
 Bitte entschuldige unsere späte Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.​
@@ -318,7 +318,7 @@ If you have any further questions, feel free to reach out to me. Your email will
         
 ${dailyClosing}.`],
         
-  [runIcon('/img/email.png'), `Hello {%customer.firstName,fallback=%},
+  [runIcon('img/email.png'), `Hello {%customer.firstName,fallback=%},
         
 Thank you for your inquiry.
 Please excuse our late response, we currently have an increased volume of emails.
@@ -397,8 +397,8 @@ const secondLineDE = [
   'ich habe eine Rückantwort aus der Fachabteilung erhalten.'
 ];
 const secondLineEN = [
-  'thank you for the nice conversation.',
-  'thank you for your inquiry.',
+  'Thank you for the nice conversation.',
+  'Thank you for your inquiry.',
   'I have received a response from the specialist department.'
 ];
 let theSecondLineList = secondLineDE; 
@@ -457,11 +457,13 @@ const contentSectionListDE = [
 let contentSectionList = contentSectionListDE; 
 
 
-const addingSectionList = [
-  ['late', 'Bitte entschuldige unsere späte Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.​']
-]
-
-
+const lateDE = [
+  ['Verspätete Antwort', 'Bitte entschuldige die verspätete Rückmeldung. Aufgrund eines erhöhten E-Mail-Aufkommens kommt es derzeit zu Verzögerungen.']
+];
+const lateEN = [
+  ['Late Response', 'We apologize for the delayed response. Due to a high volume of emails, there are currently delays.']
+];
+let isLate = lateDE; 
 
 let vorlageList = [
   ['Bereff', betreff],
@@ -483,7 +485,7 @@ let templateSectionName = 'Vorlage';
 let theTB = '';
 let theFirstLine = theFirstLineDE;
 let theSecondLine = theSecondLineList[0]; 
-let isLate = ''; 
+let isLateLine = ''; 
 let theContentLine = ''; 
 let theClosingLine = dailyClosing;
 let extra = ``; 
