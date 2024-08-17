@@ -282,7 +282,7 @@ Solltest du weitere Fragen haben, komme gerne auf mich zu. Deine Email landet di
         ​
 ${dailyClosing}.`],
         
-        [runIcon('/img/email.png'), `Hallo {%customer.firstName,fallback=%},
+        [runIcon('img/email.png'), `Hallo {%customer.firstName,fallback=%},
         
 vielen Dank für deine Anfrage.
 Bitte entschuldige unsere späte Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.​
@@ -318,7 +318,7 @@ If you have any further questions, feel free to reach out to me. Your email will
         
 ${dailyClosing}.`],
         
-  [runIcon('/img/email.png'), `Hello {%customer.firstName,fallback=%},
+  [runIcon('img/email.png'), `Hello {%customer.firstName,fallback=%},
         
 Thank you for your inquiry.
 Please excuse our late response, we currently have an increased volume of emails.
