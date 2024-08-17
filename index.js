@@ -699,8 +699,10 @@ function runTemplateExpendList(temlateSectionID, listID){
     const subSectionItem = document.createElement('div');
     subSectionItem.classList.add('templateListItem')
     subSectionItem.innerHTML = templatesNow[listID][1][i][0];
-    subSectionItem.addEventListener('click', ()=>{
-      navigator.clipboard.writeText(templatesNow[listID][1][i][1])
+    subSectionItem.addEventListener('click', (event)=>{
+      event.stopPropagation();
+      navigator.clipboard.writeText(templatesNow[listID][1][i][1]);
+      shotdownTB();
     })
 
     subSection.appendChild(subSectionItem);
