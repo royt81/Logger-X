@@ -16,11 +16,11 @@ const informations = [
     ['WP ZD2',"Neuer WP mit ZD2, fristgerecht, bis zu 6 Wochen rückwirkend."],
     ['KD angeschrieben',"KD wurde wegen fehlender Daten angeschrieben."],
     ['KD informiert',"KD wurde angeschrieben und Informiert."],
-    ['KD bereits in delivery',"KD ist bereits in delivery."],
     ['KD erneut angeschrieben',"KD wurde erneut angeschrieben, da keine Antwort."],
+    ['KD bereits in delivery',"KD ist bereits in delivery."],
     ['KD widerrufen/ gekündigt',"KD hat selbst widerrufen/ gekündigt."],
     ['KD nicht erreicht - Ereignis erledigt',"Kunde wurde nicht erreicht, daher Ereignis auf erledigt gesetzt und Ereignis zum Versand des Ablehnungsschreibens angelegt."],
-    ['ans Invoice',"wurde ans Invoice zur Korrektur weitergeleitet."],
+    ['an Invoice',"wurde ans Invoice zur Korrektur weitergeleitet."],
     ['Zählerverwechslung',"Hier liegt eine Zählerverwechslung vor. KD ist seit dem XX.XX.XXXX in delivery. Daher E01 fristgerecht, bis zu 6 Wochen rückwirkend."],
     ['erfolgloser WP, KD nicht erreicht',"erfolgloser Wechsel, KD wurde nicht erreicht."],
     ['6 abgelehnte WPs',"erfolgloser Wechsel, 6 abgelehnte WPs."],
@@ -33,7 +33,7 @@ const linkList = [
     ['https://secure.helpscout.net/', 'Helpscout'],
     ['https://www.rabot-charge.de/?utm_source=google&utm_medium=cpc&utm_campaign=DE_ACT_Search_Brand&gad_source=1&gclid=EAIaIQobChMItq-WzvHIggMV1BGLCh14_A_LEAAYASAAEgLQ6PD_BwE', 'Rabot-Charge Homepage'],
     ['https://www.check24.de/strom-gas/rabot-charge/', 'Check24 Rabot-Charge'],
-    ['https://www.rabot-charge.de/waermepumpentarif/', 'waermepumpentarif'],
+    ['https://www.rabot-charge.de/waermepumpentarif/', 'Wärmepumpentarif'],
     ['https://www.iban-rechner.de/iban_validieren.html', 'IBAN Calculator'],
     ['https://bdew-codes.de/Codenumbers/BDEWCodes/CodeOverview', 'BDEW-Codes'],
     ['https://www.bundesnetzagentur.de/DE/Home/home_node.html', 'Bundesnetzagentur']
@@ -96,8 +96,8 @@ const linkList = [
 
 // ]
 
-// const needWantOptions = [
-//   ['<want/got>'],
+// const ichBraucheWantOptions = [
+//   ['<want/ichHabe>'],
 //   ['JV'],
 //   ['ZS'],
 //   ['ÜP'],
@@ -118,7 +118,7 @@ const linkList = [
 //   'Dein Wechsel zu Rabot-Charge',
 //   'Deine Anfrage',
 //   'Anfrage',
-//   'Dein Wideruf',
+//   'Dein Widerruf',
 //   'Deine Kündigung'
 // ]
 // const quickCopyPaste = [
@@ -171,85 +171,172 @@ Ich wünsche Ihnen einen wunderbaren Tag. Wir freuen uns auf Sie.<br>`;
 
 const greatingTextBuilder = 'Text - Builder';
 
-const dailyClosing = [
-  `Ich wünsche dir eine schöne Woche`,
-  `Ich wünsche dir eine schöne Woche`,
-  `Ich wünsche dir einen schönen Tag`,
-  `Ich wünsche dir einen schönen Tag`,
-  `Ich wünsche dir einen schönen Tag`,
-  `Ich wünsche dir ein schönes Wochenende`,
-  `Ich wünsche dir ein schönes Wochenende`,
+const dailyClosingDE = [
+  `Ich wünsche dir eine tolle Woche`,
+  `Ich wünsche dir eine wunderbare Woche`,
+  `Ich wünsche dir einen großartigen Tag`,
+  `Ich wünsche dir einen fantastischen Tag`,
+  `Ich hoffe, du hast einen schönen Tag`,
+  `Ich wünsche dir ein tolles Wochenende`,
+  `Ich wünsche dir ein entspanntes Wochenende`,
+];
+
+const dailyClosingEN = [
+  `Have a great week`,
+  `Wishing you a wonderful week`,
+  `Have a great day`,
+  `Wishing you a fantastic day`,
+  `Hope you have a wonderful day`,
+  `Have a great weekend`,
+  `Wishing you a relaxing weekend`,
+];
+let closingList = dailyClosingDE;
+const todayNumber = (new Date().getDay());
+const dailyClosing = closingList[todayNumber];
+
+
+/*
+function dailyClosingToday(){
+  const today = (new Date().getDay());
+  const dailyClosing = closingList[today];
+  console.log(dailyClosing)
+
+  return dailyClosing; contentSectionList
+}*/
+//const closingLine = dailyClosingToday();
+
+  //const dayToday = (new Date().getDay());theSecondLineNow
+
+
+//const dayToday = (new Date().getDay());//contentSectionList
+
+const iNeed = [
+  ['Ann. consumption', `Please let me know your new desired annual consumption. I will update it in the system.`],
+  ['Meter reading', `You are welcome to provide me with your meter reading in response to this email.`],
+  ['IBAN', 'Please provide me with your new IBAN.'],
+  ['Meter pic', `Please provide me with a picture of your meter.`],
+  ['ZF & ÜP', `Please provide me with a picture of your meter and a copy of the handover protocol.`],
+  ['Bank statements.', `Please provide me with the bank statements for the XXXX and XXXX payments.`],
+  ['Email', `If you would like to change your email address with us, please provide me with the new desired email address.`],
+  ['Confirm termination.', `Please confirm that you would like to cancel your contract with us as of XX.XX.2024.`],
+  ['Confirm cancellation.', `Please confirm that you would like to withdraw your contract with us as of XX.XX.2024.`],
+  ['IBAN 4 SEPA', `If you would like to activate your SEPA mandate with us, please provide me with your IBAN.`],
 ]
-const dayToday = (new Date().getDay());
-
-
-const need = [
+const ichBrauche = [
   ['JV', `Bitte teile mir deinen neuen, gewünschten Jahresverbrauch mit. Ich werde ihn im System aktualisieren.`],
-  ['pay bill', `Bitte überweise die Rechnungsnummer XXX auf die folgende IBAN mit dem folgenden Verwendungszweck.`],
   ['ZS', `Gerne kannst du mir deinen Zählerstand als Antwort auf diese E-Mail mitteilen.`],
   ['IBAN', 'Bitte teile mir deine neue IBAN mit.'],
-  ['ZF', `Kannst du uns bitte ein Bild von deinem Zähler schicken?`],
+  ['ZF', `Bitte teile mir ein Bild von deinem Zähler mit.`],
   ['ZF & ÜP', `Bitte teile mir ein Bild deines Zählers und eine Kopie des Übergabeprotokolls mit.`],
   ['Kontoausz.', `Bitte teile mir die Kontoauszüge für den XXXX und XXXX Abschläge.`],
-  ['email', `Wenn du deine E-Mail-Adresse bei uns ändern möchtest, teile mir bitte die neue gewünschte E-Mail-Adresse mit.`],
-  ['bestätige Kü.', `Bitte bestätige mir, dass du deinen Vertrag bei uns zum XX.XX.2024 kündigen möchtest.`],
+  ['Email', `Wenn du deine E-Mail-Adresse bei uns ändern möchtest, teile mir bitte die neue gewünschte E-Mail-Adresse mit.`],
+  ['bestätige Kündigung.', `Bitte bestätige mir, dass du deinen Vertrag bei uns zum XX.XX.2024 kündigen möchtest.`],
+  ['bestätige Widerruf.', `Bitte bestätige mir, dass du deinen Vertrag bei uns zum XX.XX.2024 kündigen möchtest.`],
   ['IBAN z. SEPA', `Falls du dein SEPA-Mandat bei uns aktivieren möchtest, kannst du mir gerne deine IBAN mitteilen.`],
-
 ]
-const got = [
-  ['Rechnungsadresse', `Ich habe deine Rechnungsadresse bei uns aktualisiert.`],
-  ['info FA', `Ich habe diese Informationen von dir an meine Fachabteilung weitergeleitet. Sobald ich eine Rückmeldung erhalte, melde ich mich zeitnah bei dir.`],
-  ['info MP', `Ich habe diese Information an unseren Marktpartner weitergeleitet. Sobald ich Rückantwort habe, melde ich mich zeitnah bei dir.`],
-  ['ZS', `Ich habe die von dir angegebenen Zählerstände an unseren Marktpartner weitergeleitet.`],
+//let theContentLineList = ichBrauche;
 
-]
+const ichHabe = [
+  ['Rechnungsadresse', `Ich habe deine Rechnungsadresse in unserem System aktualisiert.`],
+  ['Info FA', `Ich habe deine Informationen an die zuständige Fachabteilung weitergeleitet. Sobald ich eine Rückmeldung erhalte, werde ich mich umgehend bei dir melden.`],
+  ['Info MP', `Ich habe diese Informationen an unseren Marktpartner weitergeleitet. Sobald ich eine Rückmeldung erhalte, werde ich dich zeitnah informieren.`],
+  ['Neue WP', `Ich habe eine neue Anmeldung für dich eingeleitet und hoffe, dass alles reibungslos verläuft. Sobald der Netzbetreiber unsere Anmeldung bestätigt, erhältst du deinen Stromliefervertrag. Momentan ist von deiner Seite aus keine weitere Aktion erforderlich.`],
+  ['ZS', `Ich habe die von dir gemeldeten Zählerstände an unseren Marktpartner weitergeleitet.`],
+];
+const IHave = [
+  ['Billing Address', `I have updated your billing address in our system.`],
+  ['Info to Department', `I have forwarded your information to the relevant department. As soon as I receive feedback, I will get back to you promptly.`],
+  ['Info to Partner', `I have forwarded this information to our market partner. Once I receive a response, I will inform you promptly.`],
+  ['New Enrollment', `I have initiated a new enrollment for you and hope everything goes smoothly. Once the network operator confirms our enrollment, you will receive your electricity supply contract. No further action is required from your side at this time.`],
+  ['Meter Readings', `I have forwarded the meter readings you provided to our market partner.`],
+];
+
+
 const betreff = [
-  'betreff',
+  'Betreff',
   ['Unser Gespräch', 'Unser Gespräch'],
   ['Dein Wechsel', 'Dein Wechsel zu Rabot-Charge'],
   ['Deine Anfrage', 'Deine Anfrage'],
   ['Anfrage', 'Anfrage'],
-  ['Dein Wideruf', 'Dein Wideruf V/K'],
+  ['Dein Widerruf', 'Dein Widerruf V/K'],
   ['Deine Kündigung', 'Deine Kündigung V/K'],
   ['Rechnungsk.', 'Rechnungskorrektur'],
 ]
 const regarding = [
   'regarding',
-  ['Unser Gespräch', 'Unser Gespräch'],
-  ['Dein Wechsel', 'Dein Wechsel zu Rabot-Charge'],
-  ['Deine Anfrage', 'Deine Anfrage'],
-  ['Anfrage', 'Anfrage'],
-  ['Dein Wideruf', 'Dein Wideruf V/K'],
-  ['Deine Kündigung', 'Deine Kündigung V/K'],
-  ['Rechnungsk.', 'Rechnungskorrektur'],
+  ['Our Conversation', 'Our Conversation'],
+  ['Your Change', 'Your Change to Rabot-Charge'],
+  ['Your Inquiry', 'Your Inquiry'],
+  ['Inquiry', 'Inquiry'],
+  ['Your Cancellation', 'Your Cancellation V/K'],
+  ['Your Termination', 'Your Termination V/K'],
+  ['Invoice Corr.', 'Invoice Correction'],
 ]
-const templates = [
-  ['nette Gespräch', `Hallo {%customer.firstName,fallback=%},
+const vorlage = [
+  'Vorlage',
+  [runIcon('img/telephone.png'), `Hallo {%customer.firstName,fallback=%},
     
 vielen Dank für das nette Gespräch.
         
 Solltest du weitere Fragen haben, komme gerne auf mich zu. Deine Email landet direkt bei mir und ich würde mich dann sofort bei dir melden.
         ​
-${dailyClosing[dayToday]}.`],
+${dailyClosing}.`],
         
-        ['deine Anfrage', `Hallo {%customer.firstName,fallback=%},
+        [runIcon('/img/email.png'), `Hallo {%customer.firstName,fallback=%},
         
 vielen Dank für deine Anfrage.
 Bitte entschuldige unsere späte Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.​
         ​
 Solltest du weitere Fragen haben, komme gerne auf mich zu. Deine E-Mail landet direkt bei mir und ich würde mich dann sofort bei dir melden.
         
-${dailyClosing[dayToday]}.`],
-      ['FA', `Hallo {%customer.firstName,fallback=%},
+${dailyClosing}.`],
+      [runIcon('img/accounting.png'), `Hallo {%customer.firstName,fallback=%},
         
 ich habe eine Rückantwort aus der Fachabteilung erhalten.
           
           
-${dailyClosing[dayToday]}.`
+${dailyClosing}.`
   ]
 ]
-const cancellation = [
-  ['cancellation'],
+function runIcon(path){
+  // const icon = document.createElement('img');
+  // icon.src = path;
+  // icon.classList.add('templateIcon');
+  const icon = `<img class= "templateIcon" src="${path}" alt="Telphon Icon">`
+  //icon.src = path;
+
+  //'<img class= "templateIcon" src="img/telephone.png" alt="Telphon Icon">'
+  return icon;
+}
+const template = [
+  'templates',
+  [runIcon('img/telephone.png'), `Hello {%customer.firstName,fallback=%},
+    
+Thank you for the nice conversation.
+        
+If you have any further questions, feel free to reach out to me. Your email will land directly with me and I would get back to you immediately.
+        
+${dailyClosing}.`],
+        
+  [runIcon('/img/email.png'), `Hello {%customer.firstName,fallback=%},
+        
+Thank you for your inquiry.
+Please excuse our late response, we currently have an increased volume of emails.
+        
+If you have any further questions, feel free to reach out to me. Your email will land directly with me and I would get back to you immediately.
+        
+${dailyClosing}.`],
+      
+  [runIcon('img/accounting.png'), `Hello {%customer.firstName,fallback=%},
+        
+I have received a response from the specialist department.
+          
+          
+${dailyClosing}.`
+  ]
+]
+const stornierung = [
+  ['stornierung'],
   ['Kündigung', `Hallo {%customer.firstName,fallback=%},
   
 vielen Dank für deine Anfrage.
@@ -263,11 +350,11 @@ Du erhältst innerhalb von 6 Werktagen eine Kündigungsbestätigung.
   
 ​Ich wünsche dir einen tollen Tag.`],
   
-  ['Widerrufs', `Hallo {%customer.firstName,fallback=%},
+  ['Widerruf', `Hallo {%customer.firstName,fallback=%},
   
 vielen Dank für deine Anfrage.
   ​
-Hiermit bestätigen wir dir den Eingang deines Widerrufs.
+Hiermit bestätigen wir dir den Eingang deines Widerruf.
   
 Deine Kundennummer lautet: XXXXX
 Deine Vertragsnummer lautet: XXXXXX
@@ -276,34 +363,129 @@ Du erhältst innerhalb von 6 Werktagen eine Widerrufsbestätigung.
   
 Ich wünsche dir einen tollen Tag.`]
 ]
+const cancellation = [
+  ['cancellation'],
+  ['Termination', `Hello {%customer.firstName,fallback=%},
+  
+Thank you for your inquiry.
+
+We hereby confirm the receipt of your termination.
+
+Your customer number is: XXXXX
+Your contract number is: XXXXXX
+
+You will receive a termination confirmation within 6 working days.
+
+I wish you a great day.`],
+  
+  ['Revocation', `Hello {%customer.firstName,fallback=%},
+  
+Thank you for your inquiry.
+
+We hereby confirm the receipt of your revocation.
+
+Your customer number is: XXXXX
+Your contract number is: XXXXXX
+
+You will receive a revocation confirmation within 6 working days.
+
+I wish you a great day.`]
+]
+const secondLineDE = [
+  'vielen Dank für das nette Gespräch.',
+  'vielen Dank für deine Anfrage.',
+  'ich habe eine Rückantwort aus der Fachabteilung erhalten.'
+];
+const secondLineEN = [
+  'thank you for the nice conversation.',
+  'thank you for your inquiry.',
+  'I have received a response from the specialist department.'
+];
+let theSecondLineList = secondLineDE; 
 
 // const textBuilderSectionsList = [
-//   ['quick notes', [need, got]],
-//   ['templates', [betreff, templates, cancellation]],
+//   ['quick notes', [ichBrauche, ichHabe]],
+//   ['vorlage', [betreff, vorlage, stornierung]],
 // ]
 
-const tBAdding = [
-  ['late', 'sorry im late'],
-  ['reccomand', 'plese say nice stuff'],
-  ['call me!', 'call me']
-]
+//vorlage stornierung
 
-const contentSectionList = [
-  ['need', need],
-  ['got', got],
-  ['extra', tBAdding]
+
+// const tBAddingDE = [
+//   ['ruf uns',`Gerne kannst du uns bei weiteren Fragen telefonisch kontaktieren.
+// Wir sind von Mo - Fr zwischen 9:00 und 17:00 Uhr unter 040 593622030 erreichbar.`],
+//   ['-4,99',`Als kleines Dankeschön werden wir deine Servicegebühr für den Monat XXX in Höhe von 4,99 € erlassen.`],
+//   ['feedback',`Wir würden uns sehr freuen, wenn du uns eine Bewertung hinterlassen würdest. 
+// Hier ist der Link dazu: https://de.trustpilot.com/review/rabot-charge.de.
+// Dein Feedback ist uns wichtig!`],
+//   ['Code', `Mit dem Empfehlungscode CWZBIYS bekommst du 50 € Gutschrift für jeden Vertrag, den du über unsere Webseite unterschreibst.`],
+//   ['freut mich!', `Das freut mich zu hören. Wenn du noch weitere Fragen hast, zögere bitte nicht, uns zu kontaktieren.`]
+// ]
+
+const tBAddingEN = [
+  ['call us', `Feel free to contact us by phone if you have any further questions. 
+We are available from Monday to Friday between 9:00 AM and 5:00 PM at 040 593622030.`],
+  ['-€4.99', 'As a small token of appreciation, we will waive your service fee of €4.99 for the month of XXX.'],
+  ['feedback', `We would greatly appreciate it if you could leave us a review. 
+Here’s the link: https://de.trustpilot.com/review/rabot-charge.de. 
+Your feedback is important to us!`],
+  ['referral code', 'With the referral code CWZBIYS, you will receive a €50 credit for each contract you sign through our website.'],
+  ['glad to hear it!', 'I’m glad to hear that! If you have any further questions, please don’t hesitate to contact us.']
+];
+const tBAddingDE = [
+  ['ruf uns an', `Gerne kannst du uns bei weiteren Fragen telefonisch kontaktieren. 
+Wir sind von Montag bis Freitag zwischen 9:00 und 17:00 Uhr unter 040 593622030 erreichbar.`],
+  ['-4,99 €', `Als kleines Dankeschön erlassen wir dir die Servicegebühr für den Monat XXX in Höhe von 4,99 €.`],
+  ['feedback', `Wir würden uns sehr freuen, wenn du uns eine Bewertung hinterlassen würdest. 
+Hier ist der Link dazu: https://de.trustpilot.com/review/rabot-charge.de. 
+Dein Feedback ist uns wichtig!`],
+  ['Empfehlungscode', 'Mit dem Empfehlungscode CWZBIYS erhältst du eine Gutschrift von 50 € für jeden Vertrag, den du über unsere Webseite abschließt.'],
+  ['das freut mich!', 'Das freut mich zu hören! Falls du noch weitere Fragen hast, zögere bitte nicht, uns zu kontaktieren.']
+];
+let tBAddingList = tBAddingDE;
+
+const contentSectionListEN = [
+   ['I need', iNeed],
+   ['I got', IHave],
+   ['Extra', tBAddingEN]
 ]
+const contentSectionListDE = [
+  ['ich brauche', ichBrauche],
+  ['ich habe', ichHabe],
+  ['Extra', tBAddingDE]
+]
+let contentSectionList = contentSectionListDE; 
+
+
 const addingSectionList = [
   ['late', 'Bitte entschuldige unsere späte Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.​']
 ]
 
-const theSentence = '';
 
-const templatesList = [
-  ['bereff', betreff],
-  ['templates', templates], 
-  ['cancellation', cancellation]
+
+let vorlageList = [
+  ['Bereff', betreff],
+  ['Vorlage', vorlage], 
+  ['Stornierung', stornierung]
 ];
- 
-theSentence.theFirstLine = '`Hallo {%customer.firstName,fallback=%},';
-theSentence.theSecondLine = 'vielen Dank für das nette Gespräch.'; 
+let templatesList = [
+  ['Regarding', regarding],
+  ['Templates', template],
+  ['Cancellation', cancellation]
+]
+
+let theFirstLineEN = `Hello {%customer.firstName,fallback=%},`;
+let theFirstLineDE = `Hallo {%customer.firstName,fallback=%},`;
+
+let templatesNow = vorlageList;
+let templateSectionName = 'Vorlage';
+
+let theTB = '';
+let theFirstLine = theFirstLineDE;
+let theSecondLine = theSecondLineList[0]; 
+let isLate = ''; 
+let theContentLine = ''; 
+let theClosingLine = dailyClosing;
+let extra = ``; 
+
+let englishSectionName = 'to English'

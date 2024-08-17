@@ -105,7 +105,7 @@ function run() {
   //singHaiku();
   creatCopyPasteList();
   createMPCalculator();
-  //createTextBuilder();
+  createTextBuilder();
 }
 
 function declareSections(){
@@ -362,7 +362,7 @@ async function runBoredText(){
   .catch(error => {
     console.error('Things go bad!:', error);
   });
-}
+}//disabled
 
 async function singHaiku(){
   //Haiku
@@ -399,7 +399,7 @@ async function singHaiku(){
     .catch(error => {
       console.error(error);
     });
-}
+}//disabled
 
 function createTextBuilder(){
 
@@ -421,25 +421,30 @@ function runTextBuilder(){
 function createTextBuilderSections(){
   const textBuilder = document.getElementById('textBuilder');
 
-  const closeButton = makeTBSection('closeButton');
+  const closeButton = makeTBSection('closeButton', 'Close');
   closeButton.addEventListener('click',(event)=>{
     event.stopPropagation();
     shotdownTB();
   })
 
-  const isEnglish = makeTBSection('to-English');
-  isEnglish.addEventListener('click',()=>{
-    isEnglish.innerHTML = '';
+  const isEnglish = makeTBSection('to-English', englishSectionName);
+  isEnglish.addEventListener('click',(event)=>{
+    event.stopPropagation();
+    isEnglish.innerText = '';
     runEnglishSection();
   })
 
-  const sLSection = makeTBSection('second-line');
-  sLSection.addEventListener('mouseenter',()=>{
+  const sLSection = makeTBSection('second-line', 'Second Line');
+  sLSection.addEventListener('mouseenter',(event)=>{
+    event.stopPropagation();
     sLSection.innerHTML = '';
     runSecondLineSection();
   })
+  sLSection.addEventListener('mouseleave', ()=>{
+    sLSection.innerHTML = 'Second Line'
+  })
 
-  const content = makeTBSection('content');
+  const content = makeTBSection('content', 'Content');
   content.addEventListener('mouseenter',()=>{
     content.innerHTML = '';
     runContentSection();
@@ -448,83 +453,110 @@ function createTextBuilderSections(){
   content.addEventListener('mouseleave',()=>{
     content.classList.remove('contentSectionExpend')
     content.innerHTML = '';
-    content.innerText = 'content'
-  })
-  
-  const addings = makeTBSection('addings');
-  addings.addEventListener('mouseenter',()=>{
-    addings.innerHTML = '';
-    runAddingsSection();
-  })
-  addings.addEventListener('mouseleave', ()=>{
-    addings.classList.remove('addingSectionExpend');
+    content.innerText = 'Content'
   })
 
-  const runButton = makeTBSection('run');
+  const runButton = makeTBSection('run', 'RUN');
   runButton.addEventListener('click',(event)=>{
     event.stopPropagation();
     runTBButton();
   })
 
-  const templates = makeTBSection('templates');
+  const templates = makeTBSection('templates', templateSectionName);
   templates.addEventListener('mouseenter',()=>{
     templates.innerHTML = '';
     runTemplatesSection();
   })
   templates.addEventListener('mouseleave', ()=>{
-    templates.classList.remove('templatesSectionExpent')
+    templates.classList.remove('templatesSectionExpent');
+    templates.innerHTML = templateSectionName;
   })
 
   textBuilder.appendChild(closeButton);
   textBuilder.appendChild(isEnglish);
   textBuilder.appendChild(sLSection);
   textBuilder.appendChild(content);
-  //textBuilder.appendChild(addings);
   textBuilder.appendChild(runButton);
   textBuilder.appendChild(templates);
 }
 
-function makeTBSection(name){
+function makeTBSection(sectionID, name){
   const section = document.createElement('div');
   section.classList.add('textBuilderSection');
-  section.id = name;
+  section.id = sectionID;
   section.innerText = name
-  section.addEventListener('mouseleave', ()=>{
-    section.innerHTML = name;
-  })
+  // section.addEventListener('mouseleave', ()=>{
+  //   section.innerHTML = name;
+  // })
   return section;
 }
 function shotdownTB(){
   const textBuilder = document.getElementById('textBuilder');
-  //textBuilder.style.background = 'pink';
   textBuilder.innerHTML = greatingTextBuilder; 
   textBuilder.classList.remove('textBuilderExpend');
-  //textBuilder.className = 'textBuilder';
-  //console.log('TB is closed') 
+  extra = ''; 
+  theContentLine = ''; 
 }
 
 function runEnglishSection(){
   const section = document.getElementById('to-English');
+  const sectionTemples = document.getElementById('templates');
+
+  section.backgroundColor = 'pink' ? section.backgroundColor = 'orange' 
+  : section.backgroundColor = 'pink';
+
+  englishSectionName == 'to German' ? (englishSectionName = 'to English', section.innerText = 'To English', section.style.backgroundColor = 'var(--section-background-color2)') 
+  : (englishSectionName = 'to German', section.innerHTML = 'To German', section.style.backgroundColor = 'var(--section-background-color1)');
+
+  theFirstLine.includes('Hallo') ? (theFirstLine = theFirstLineEN, console.log('Hello')) 
+  : (theFirstLine = theFirstLineDE, console.log('Hallo'));
+
+  theSecondLineList == secondLineDE ? (theSecondLineList = secondLineEN,theSecondLine = theSecondLineList[0]) 
+  : (theSecondLineList = secondLineDE, theSecondLine = theSecondLineList[0]);
+
+  // theContentLineList == ichBrauche ? (theContentLineList == iNeed) 
+  // : (theContentLineList = ichBrauche);
+  contentSectionList == contentSectionListDE ? contentSectionList = contentSectionListEN
+  : contentSectionList = contentSectionListDE;
+
+  closingList == dailyClosingDE ? (closingList = dailyClosingEN, theClosingLine = closingList[todayNumber]) 
+  : (closingList = dailyClosingDE, theClosingLine = closingList[todayNumber]);
+
+  templateSectionName == 'Vorlage' ? (templatesNow = templatesList, templateSectionName = 'Templates', sectionTemples.innerText = templateSectionName) 
+  : (templatesNow = vorlageList, templateSectionName = 'Vorlage', sectionTemples.innerText = templateSectionName);
+
+
+
 }
 
 function runSecondLineSection(){
   const section = document.getElementById('second-line');
 
-  const phone = runSecondLineSubSection('phone');
-  const mail = runSecondLineSubSection('mail');
-  const fachabt = runSecondLineSubSection('FA');
+  const phone = runSecondLineSubSection('img/telephone.png', theSecondLineList[0]);
+  const mail = runSecondLineSubSection('/img/email.png', theSecondLineList[1]);
+  const fachabt = runSecondLineSubSection('img/accounting.png', theSecondLineList[2]);
 
   section.appendChild(phone);
   section.appendChild(mail);
   section.appendChild(fachabt);
 }
-function runSecondLineSubSection(name){
-  const subSection = document.createElement('div');
+function runSecondLineSubSection(path, text){
+  const subSection = document.createElement('img');
+  subSection.src = path;
   subSection.classList.add('secondLineSubSection');
-  subSection.innerText = name;
+
+  subSection.addEventListener('click', (event)=>{
+    event.stopPropagation();
+    const originalColor = window.getComputedStyle(subSection).backgroundColor;
+
+    theSecondLine = text;
+    subSection.style.backgroundColor = 'lightgreen';
+    setTimeout(() => {
+      subSection.style.backgroundColor = originalColor;
+  }, 300);
+  })
   return subSection
 }
-
 function runContentSection(){
 
   const section = document.getElementById('content');
@@ -551,58 +583,93 @@ function runContentSection(){
     section.appendChild(contentSectionSubSection);
   }
 }
+
+
 function runCSSExpendList(cSSID, listID){
   const subSection = document.getElementById(cSSID);
   subSection.innerHTML = ''; 
   subSection.classList.add('cSSSExpend');
-  subSection.style.height =`${(contentSectionList[listID][1].length * 5)}vh`;
-  subSection.style.margin =`${(contentSectionList[listID][1].length * 5)/2}vh 0 0 0`;
+  subSection.style.height =`${(contentSectionList[listID][1].length * 8)}vh`;
+  subSection.style.margin =`${(contentSectionList[listID][1].length)}vh 0 0 0`;
+
+  for( let i=0; i<contentSectionList[listID][1].length; i++){
+
+    const subSectionItem = document.createElement('div');
+    subSectionItem.classList.add('CSSItem');
+    subSectionItem.innerText = contentSectionList[listID][1][i][0];
+    subSection.appendChild(subSectionItem);
+
+    subSectionItem.addEventListener('click', ()=>{
+      contentSectionList[listID][1] == tBAddingList ? extra = `
+${contentSectionList[listID][1][i][1]}
+      `
+      : theContentLine = contentSectionList[listID][1][i][1];
+    })
+  }
+}
+
+/*
+function runCSSExpendList(cSSID, listID){
+  const subSection = document.getElementById(cSSID);
+  subSection.innerHTML = ''; 
+  subSection.classList.add('cSSSExpend');
+  subSection.style.height =`${(contentSectionList[listID][1].length * 8)}vh`;
+  subSection.style.margin =`${(contentSectionList[listID][1].length)}vh 0 0 0`;
 
   for( let i=0; i<contentSectionList[listID][1].length; i++){
 
     const subSectionItem = document.createElement('div');
     subSectionItem.classList.add('CSSItem')
-    subSectionItem.innerText = contentSectionList[listID][1][i][0]
-
+    subSectionItem.innerText = contentSectionList[listID][1][i][0];
+    theContentLine = contentSectionList[listID][1][i][1];
     subSection.appendChild(subSectionItem);
   }
 }
 
-function runAddingsSection(){
-  const section = document.getElementById('addings');
-  section.classList.add('addingSectionExpend');
-}//disabled
+*/
 
 function runTBButton(){
   const textBuilder = document.getElementById('textBuilder');
   textBuilder.classList.remove('textBuilderExpend');
   textBuilder.innerHTML = '';
 
+  theTB = 
+  `${theFirstLine}
+  
+${theSecondLine}
+${isLate}
+${theContentLine}
+${extra}
+${theClosingLine}.`
+
+  console.log(theTB)
+  navigator.clipboard.writeText(theTB);
+
   shotdownTB()
-  console.log('run button')
 }
 
 function runTemplatesSection(){
   const section = document.getElementById('templates');
   section.classList.add('templatesSectionExpent')
 
-  for(let i=0; i<templatesList.length; i++){
+  for(let i=0; i<templatesNow.length; i++){
     const temlateSectionID = `tempID${i}`;
 
     const tempSSection = document.createElement('div');
     tempSSection.id = temlateSectionID;
     tempSSection.classList.add('tempSSection');
-    tempSSection.innerText = contentSectionList[i][0];
+    tempSSection.innerText = templatesNow[i][0];
     tempSSection.addEventListener('mouseenter', ()=>{
       runTemplateExpendList(temlateSectionID, i);
     })
     tempSSection.addEventListener('mouseleave', ()=>{
       tempSSection.classList.remove('cSSSExpend');
-      tempSSection.innerHTML = contentSectionList[i][0];
+      tempSSection.innerHTML = templatesNow[i][0];
       tempSSection.style.height = '90%';
       tempSSection.style.margin = '0'; 
     })
 
+    //innerText
     section.appendChild(tempSSection);
   }
 }
@@ -610,20 +677,24 @@ function runTemplateExpendList(temlateSectionID, listID){
   const subSection = document.getElementById(temlateSectionID);
   subSection.innerHTML = ''; 
   subSection.classList.add('templateExpend');
-  subSection.style.height =`${(contentSectionList[listID][1].length * 5)}vh`;
-  subSection.style.margin =`0 0 ${(contentSectionList[listID][1].length * 5)/2}vh 0`;
+  subSection.style.height =`${(templatesNow[listID][1].length * 7)}vh`;
+  subSection.style.margin =`0 0 ${(templatesNow[listID][1].length * 5)/2}vh 0`;
 
-  for( let i=0; i<contentSectionList[listID][1].length; i++){
+  for( let i=1; i<templatesNow[listID][1].length; i++){
 
     const subSectionItem = document.createElement('div');
-    subSectionItem.classList.add('CSSItem')
-    subSectionItem.innerText = contentSectionList[listID][1][i][0]
+    subSectionItem.classList.add('templateListItem')
+    subSectionItem.innerHTML = templatesNow[listID][1][i][0];
+    subSectionItem.addEventListener('click', ()=>{
+      navigator.clipboard.writeText(templatesNow[listID][1][i][1])
+    })
 
     subSection.appendChild(subSectionItem);
   }
 }
 
-console.log(dayToday)
+//console.log(dayToday)
+//heContentLine
 
 //const dailyEnding = 
 
