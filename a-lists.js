@@ -299,13 +299,7 @@ ${dailyClosing}.`
   ]
 ]
 function runIcon(path){
-  // const icon = document.createElement('img');
-  // icon.src = path;
-  // icon.classList.add('templateIcon');
   const icon = `<img class= "templateIcon" src="${path}" alt="Telphon Icon">`
-  //icon.src = path;
-
-  //'<img class= "templateIcon" src="img/telephone.png" alt="Telphon Icon">'
   return icon;
 }
 const template = [
@@ -456,6 +450,14 @@ const contentSectionListDE = [
 ]
 let contentSectionList = contentSectionListDE; 
 
+const telNoteList = [
+  ['test'],
+  ['NKD', `G: NKD wollte Informationen über unseren Tarif und den Wechsel zu uns haben.`],
+  ['Kollegen besprochen', 'G: Das Thema wurde bereits mit eiem Kollegen besprochen'],
+  ['WP Status', 'G: KD rief an, um den Status seiner WP zu erfahren'],
+  ['Früher anfangen', `G: KD wollte früher bei uns anfangen.
+V: KD verlangt nach SoKü von AV, Vertrag bei uns widerrufen und ein neuer Vertrag schlissen.`],
+]
 
 const lateDE = [
   ['Verspätete Antwort', 'Bitte entschuldige die verspätete Rückmeldung. Aufgrund eines erhöhten E-Mail-Aufkommens kommt es derzeit zu Verzögerungen.']
@@ -468,13 +470,15 @@ let isLate = lateDE;
 let vorlageList = [
   ['Bereff', betreff],
   ['Vorlage', vorlage], 
-  ['Stornierung', stornierung]
+  ['Stornierung', stornierung],
+  ['Phone notes', telNoteList]
 ];
 let templatesList = [
   ['Regarding', regarding],
   ['Templates', template],
   ['Cancellation', cancellation]
 ]
+
 
 let theFirstLineEN = `Hello {%customer.firstName,fallback=%},`;
 let theFirstLineDE = `Hallo {%customer.firstName,fallback=%},`;
