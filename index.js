@@ -547,7 +547,7 @@ function runSecondLineSection(){
   const section = document.getElementById('second-line');
 
   const phone = runSecondLineSubSection('img/telephone.png', theSecondLineList[0]);
-  const mail = runSecondLineSubSection('/img/email.png', theSecondLineList[1]);
+  const mail = runSecondLineSubSection('img/email.png', theSecondLineList[1]);
   const fachabt = runSecondLineSubSection('img/accounting.png', theSecondLineList[2]);
 
   section.appendChild(phone);
