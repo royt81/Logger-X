@@ -340,6 +340,7 @@ body{
 
     font-size: 3vh;
     color: rgb(120, 120, 120);
+    
 }
 .textBuilder:hover{
     transition: all 700ms;

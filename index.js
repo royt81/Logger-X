@@ -300,7 +300,6 @@ function creatCopyPasteList(){
     })
     item.innerText = name;
     eventList.appendChild(item);
-
   }
   const salesbutton = document.createElement('div');
     salesbutton.classList.add('item');
@@ -320,7 +319,24 @@ function creatCopyPasteList(){
     });
 
     eventList.appendChild(salesbutton);
+
+    const textSizeButton = document.createElement('div');
+    textSizeButton.classList.add('item');
+    textSizeButton.innerText = 'Adjust text size';
+
+    textSizeButton.addEventListener('click', (event)=>{
+      event.stopPropagation();
+      const buttons = document.querySelectorAll('.item');
+      buttons.forEach(element =>{
+        element.style.fontSize == '2vh' ? element.style.fontSize = '3vh' : element.style.fontSize == '3vh' ? element.style.fontSize = '4vh' :element.style.fontSize == '4vh' ? element.style.fontSize = '5vh' : element.style.fontSize = '2vh'
+        //element.style.fontSize = '10vh';
+      })
+    })
+
+    eventList.appendChild(textSizeButton);
+
 }
+
 
 function createLinkList() {
 
@@ -433,16 +449,6 @@ function createTextBuilderSections(){
     isEnglish.innerText = '';
     runEnglishSection();
   })
-
-//   const isLateSection = document.createElement('div');
-//   //isLateSection.classList.add('textBuilderSection');
-//   isLateSection.id = 'isLate';
-//   isLateSection.innerHTML = isLate[0][0];
-//   isLateSection.addEventListener('click', ()=>{
-//     isLateLine = `${isLate[0][1]}
-// `
-//   })
-
 
   const sLSection = makeTBSection('second-line', 'Second Line');
   sLSection.addEventListener('mouseenter',(event)=>{
@@ -574,6 +580,7 @@ function runSecondLineSubSection(path, text){
   })
   return subSection
 }
+
 function runContentSection(){
 
   const section = document.getElementById('content');
@@ -618,32 +625,11 @@ function runCSSExpendList(cSSID, listID){
 
     subSectionItem.addEventListener('click', ()=>{
       contentSectionList[listID][1] == tBAddingList ? extra = `
-${contentSectionList[listID][1][i][1]}
-      `
+${contentSectionList[listID][1][i][1]}`
       : theContentLine = contentSectionList[listID][1][i][1];
     })
   }
 }
-
-/*
-function runCSSExpendList(cSSID, listID){
-  const subSection = document.getElementById(cSSID);
-  subSection.innerHTML = ''; 
-  subSection.classList.add('cSSSExpend');
-  subSection.style.height =`${(contentSectionList[listID][1].length * 8)}vh`;
-  subSection.style.margin =`${(contentSectionList[listID][1].length)}vh 0 0 0`;
-
-  for( let i=0; i<contentSectionList[listID][1].length; i++){
-
-    const subSectionItem = document.createElement('div');
-    subSectionItem.classList.add('CSSItem')
-    subSectionItem.innerText = contentSectionList[listID][1][i][0];
-    theContentLine = contentSectionList[listID][1][i][1];
-    subSection.appendChild(subSectionItem);
-  }
-}
-
-*/
 
 function runTBButton(){
   const textBuilder = document.getElementById('textBuilder');
@@ -654,6 +640,7 @@ function runTBButton(){
   `${theFirstLine}
   
 ${theSecondLine}
+
 ${theContentLine}
 ${extra}
 ${theClosingLine}.`
@@ -712,10 +699,6 @@ function runTemplateExpendList(temlateSectionID, listID){
 }
 
 //console.log(dayToday)
-//heContentLine
-
-//const dailyEnding = 
-
 ///
 
 
