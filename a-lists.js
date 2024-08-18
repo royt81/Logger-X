@@ -388,11 +388,15 @@ I wish you a great day.`]
 const secondLineDE = [
   'vielen Dank für das nette Gespräch.',
   'vielen Dank für deine Anfrage.',
+  `vielen Dank für deine Anfrage.
+Bitte entschuldige unsere späte Rückmeldung, wir haben derzeit ein erhöhtes Mailaufkommen.​`,
   'ich habe eine Rückantwort aus der Fachabteilung erhalten.'
 ];
 const secondLineEN = [
   'Thank you for the nice conversation.',
   'Thank you for your inquiry.',
+  `Thank you for your inquiry.
+Please excuse our late response, we currently have an increased volume of emails.`,
   'I have received a response from the specialist department.'
 ];
 let theSecondLineList = secondLineDE; 
@@ -402,7 +406,7 @@ let theSecondLineList = secondLineDE;
 //   ['vorlage', [betreff, vorlage, stornierung]],
 // ]
 
-//vorlage stornierung
+//vorlage stornierung theSecondLineList
 
 
 // const tBAddingDE = [

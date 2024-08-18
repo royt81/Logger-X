@@ -433,14 +433,15 @@ function createTextBuilderSections(){
     isEnglish.innerText = '';
     runEnglishSection();
   })
-  const isLateSection = document.createElement('div');
-  //isLateSection.classList.add('textBuilderSection');
-  isLateSection.id = 'isLate';
-  isLateSection.innerHTML = isLate[0][0];
-  isLateSection.addEventListener('click', ()=>{
-    isLateLine = `${isLate[0][1]}
-`
-  })
+
+//   const isLateSection = document.createElement('div');
+//   //isLateSection.classList.add('textBuilderSection');
+//   isLateSection.id = 'isLate';
+//   isLateSection.innerHTML = isLate[0][0];
+//   isLateSection.addEventListener('click', ()=>{
+//     isLateLine = `${isLate[0][1]}
+// `
+//   })
 
 
   const sLSection = makeTBSection('second-line', 'Second Line');
@@ -483,7 +484,7 @@ function createTextBuilderSections(){
 
   textBuilder.appendChild(closeButton);
   textBuilder.appendChild(isEnglish);
-  textBuilder.appendChild(isLateSection);
+  //textBuilder.appendChild(isLateSection);
   textBuilder.appendChild(sLSection);
   textBuilder.appendChild(content);
   textBuilder.appendChild(runButton);
@@ -548,10 +549,12 @@ function runSecondLineSection(){
 
   const phone = runSecondLineSubSection('img/telephone.png', theSecondLineList[0]);
   const mail = runSecondLineSubSection('img/email.png', theSecondLineList[1]);
-  const fachabt = runSecondLineSubSection('img/accounting.png', theSecondLineList[2]);
+  const delayMail = runSecondLineSubSection('img/late-mail.png', theSecondLineList[2]);
+  const fachabt = runSecondLineSubSection('img/accounting.png', theSecondLineList[3]);
 
   section.appendChild(phone);
   section.appendChild(mail);
+  section.appendChild(delayMail);
   section.appendChild(fachabt);
 }
 function runSecondLineSubSection(path, text){
