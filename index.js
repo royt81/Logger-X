@@ -507,7 +507,7 @@ function shotdownTB(){
   textBuilder.classList.remove('textBuilderExpend');
   extra = ''; 
   theContentLine = ''; 
-  isLateLine = ''; 
+  //isLateLine = ''; 
 }
 
 function runEnglishSection(){
@@ -527,7 +527,7 @@ function runEnglishSection(){
   theSecondLineList == secondLineDE ? (theSecondLineList = secondLineEN,theSecondLine = theSecondLineList[0]) 
   : (theSecondLineList = secondLineDE, theSecondLine = theSecondLineList[0]);
 
-  isLate == lateDE ? (isLate = lateEN, lateSection.innerHTML = 'Late Response') : (isLate = lateDE, lateSection.innerText = 'Verspätete Antwort');
+  //isLate == lateDE ? (isLate = lateEN, lateSection.innerHTML = 'Late Response') : (isLate = lateDE, lateSection.innerText = 'Verspätete Antwort');
 
   // theContentLineList == ichBrauche ? (theContentLineList == iNeed) 
   // : (theContentLineList = ichBrauche);
@@ -654,7 +654,6 @@ function runTBButton(){
   `${theFirstLine}
   
 ${theSecondLine}
-${isLateLine}
 ${theContentLine}
 ${extra}
 ${theClosingLine}.`
