@@ -328,7 +328,7 @@ function creatCopyPasteList(){
       event.stopPropagation();
       const buttons = document.querySelectorAll('.item');
       buttons.forEach(element =>{
-        element.style.fontSize == '2vh' ? element.style.fontSize = '3vh' : element.style.fontSize == '3vh' ? element.style.fontSize = '4vh' :element.style.fontSize == '4vh' ? element.style.fontSize = '5vh' : element.style.fontSize = '2vh'
+        element.style.fontSize == '1vh' ? element.style.fontSize = '2vh' : element.style.fontSize == '2vh' ? element.style.fontSize = '3vh' : element.style.fontSize = '1vh';
         //element.style.fontSize = '10vh';
       })
     })
