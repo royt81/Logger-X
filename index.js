@@ -337,7 +337,6 @@ function creatCopyPasteList(){
 
 }
 
-
 function createLinkList() {
 
   const shortcutsTable = document.getElementById('shortcutsTable');
@@ -496,7 +495,6 @@ function createTextBuilderSections(){
   textBuilder.appendChild(runButton);
   textBuilder.appendChild(templates);
 }
-
 function makeTBSection(sectionID, name){
   const section = document.createElement('div');
   section.classList.add('textBuilderSection');
@@ -515,7 +513,6 @@ function shotdownTB(){
   theContentLine = ''; 
   //isLateLine = ''; 
 }
-
 function runEnglishSection(){
   const section = document.getElementById('to-English');
   const sectionTemples = document.getElementById('templates');
@@ -549,7 +546,6 @@ function runEnglishSection(){
 
 
 }
-
 function runSecondLineSection(){
   const section = document.getElementById('second-line');
 
@@ -580,7 +576,6 @@ function runSecondLineSubSection(path, text){
   })
   return subSection
 }
-
 function runContentSection(){
 
   const section = document.getElementById('content');
@@ -607,8 +602,6 @@ function runContentSection(){
     section.appendChild(contentSectionSubSection);
   }
 }
-
-
 function runCSSExpendList(cSSID, listID){
   const subSection = document.getElementById(cSSID);
   subSection.innerHTML = ''; 
@@ -625,12 +618,12 @@ function runCSSExpendList(cSSID, listID){
 
     subSectionItem.addEventListener('click', ()=>{
       contentSectionList[listID][1] == tBAddingList ? extra = `
-${contentSectionList[listID][1][i][1]}`
+${contentSectionList[listID][1][i][1]}
+`
       : theContentLine = contentSectionList[listID][1][i][1];
     })
   }
 }
-
 function runTBButton(){
   const textBuilder = document.getElementById('textBuilder');
   textBuilder.classList.remove('textBuilderExpend');
@@ -650,7 +643,6 @@ ${theClosingLine}.`
 
   shotdownTB()
 }
-
 function runTemplatesSection(){
   const section = document.getElementById('templates');
   section.classList.add('templatesSectionExpent')

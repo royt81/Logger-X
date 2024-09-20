@@ -25,7 +25,10 @@ const informations = [
     ['erfolgloser WP, KD nicht erreicht',"erfolgloser Wechsel, KD wurde nicht erreicht."],
     ['6 abgelehnte WPs',"erfolgloser Wechsel, 6 abgelehnte WPs."],
     ['Sophia über SLP zu RLM informiert',"Sophia über SLP zu RLM Kunde per Mail informiert."],
-    ['KD teilt ZS mit',"KD teilt ZS mit. ZN: Datum: ZS:"],
+    ['KD teilt ZS mit',`KD teilt ZS mit. 
+ZN: 
+Datum: 
+ZS:`],
 ];
 
 const linkList = [
@@ -255,7 +258,7 @@ const IHave = [
 const betreff = [
   'Betreff',
   ['Unser Gespräch', 'Unser Gespräch'],
-  ['Dein Wechsel', 'Dein Wechsel zu Rabot-Charge'],
+  ['Dein Wechsel', 'Dein Wechsel zu Rabot-Energy'],
   ['Deine Anfrage', 'Deine Anfrage'],
   ['Anfrage', 'Anfrage'],
   ['Dein Widerruf', 'Dein Widerruf V/K'],
@@ -265,7 +268,7 @@ const betreff = [
 const regarding = [
   'regarding',
   ['Our Conversation', 'Our Conversation'],
-  ['Your Change', 'Your Change to Rabot-Charge'],
+  ['Your Change', 'Your Change to Rabot-Energy'],
   ['Your Inquiry', 'Your Inquiry'],
   ['Inquiry', 'Inquiry'],
   ['Your Cancellation', 'Your Cancellation V/K'],
