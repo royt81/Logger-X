@@ -245,6 +245,9 @@ const ichHabe = [
   ['Info MP', `Ich habe diese Informationen an unseren Marktpartner weitergeleitet. Sobald ich eine Rückmeldung erhalte, werde ich dich zeitnah informieren.`],
   ['Neue WP', `Ich habe eine neue Anmeldung für dich eingeleitet und hoffe, dass alles reibungslos verläuft. Sobald der Netzbetreiber unsere Anmeldung bestätigt, erhältst du deinen Stromliefervertrag. Momentan ist von deiner Seite aus keine weitere Aktion erforderlich.`],
   ['ZS', `Ich habe die von dir gemeldeten Zählerstände an unseren Marktpartner weitergeleitet.`],
+  ['E-Mail', `Ich habe deine E-Mail-Adresse jetzt mit deinem Vertrag synchronisiert. Du kannst dich nun mit dieser E-Mail-Adresse in unserer App anmelden.`],
+  ['das freut mich!', 'Das freut mich zu hören! Falls du noch weitere Fragen hast, zögere bitte nicht, uns zu kontaktieren.'],
+
 ];
 const IHave = [
   ['Billing Address', `I have updated your billing address in our system.`],
@@ -252,6 +255,9 @@ const IHave = [
   ['Info to Partner', `I have forwarded this information to our market partner. Once I receive a response, I will inform you promptly.`],
   ['New Enrollment', `I have initiated a new enrollment for you and hope everything goes smoothly. Once the network operator confirms our enrollment, you will receive your electricity supply contract. No further action is required from your side at this time.`],
   ['Meter Readings', `I have forwarded the meter readings you provided to our market partner.`],
+  ['E-Mail', `I have now synced your email address with your contract. You can now log into our app using this email address.`],
+  ['glad to hear it!', 'I’m glad to hear that! If you have any further questions, please don’t hesitate to contact us.']
+
 ];
 
 
@@ -431,7 +437,6 @@ We are available from Monday to Friday between 9:00 AM and 5:00 PM at 040 593622
 Here’s the link: https://de.trustpilot.com/review/rabot-charge.de. 
 Your feedback is important to us!`],
   ['referral code', 'With the referral code CWZBIYS, you will receive a €50 credit for each contract you sign through our website.'],
-  ['glad to hear it!', 'I’m glad to hear that! If you have any further questions, please don’t hesitate to contact us.']
 ];
 const tBAddingDE = [
   ['ruf uns an', `Gerne kannst du uns bei weiteren Fragen telefonisch kontaktieren. 
@@ -441,7 +446,6 @@ Wir sind von Montag bis Freitag zwischen 9:00 und 17:00 Uhr unter 040 593622030 
 Hier ist der Link dazu: https://de.trustpilot.com/review/rabot-charge.de. 
 Dein Feedback ist uns wichtig!`],
   ['Empfehlungscode', 'Mit dem Empfehlungscode CWZBIYS erhältst du eine Gutschrift von 50 € für jeden Vertrag, den du über unsere Webseite abschließt.'],
-  ['das freut mich!', 'Das freut mich zu hören! Falls du noch weitere Fragen hast, zögere bitte nicht, uns zu kontaktieren.']
 ];
 let tBAddingList = tBAddingDE;
 
