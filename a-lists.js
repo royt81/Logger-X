@@ -270,6 +270,7 @@ const betreff = [
   ['Dein Widerruf', 'Dein Widerruf V/K'],
   ['Deine Kündigung', 'Deine Kündigung V/K'],
   ['Rechnungsk.', 'Rechnungskorrektur'],
+  ['Telefonnotiz', 'Telefonnotiz'],
 ]
 const regarding = [
   'regarding',

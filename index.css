@@ -608,3 +608,16 @@ body{
 }
 
 
+@media (max-width: 550px){
+    .templateListItem{
+        font-size: 1vh;
+    }
+    /* .textBuilder{
+        width: auto;
+    } */
+    /* .textBuilderExpend{
+        width: 40%;
+    } */
+}
+
+
