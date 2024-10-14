@@ -28,7 +28,7 @@ const informations = [
     ['KD teilt ZS mit',`KD teilt ZS mit. 
 ZN: 
 Datum: 
-ZS:`],
+ZS: `],
 ];
 
 const linkList = [
@@ -234,7 +234,7 @@ const ichBrauche = [
   ['Kontoausz.', `Bitte teile mir die Kontoauszüge für den XXXX und XXXX Abschläge.`],
   ['Email', `Wenn du deine E-Mail-Adresse bei uns ändern möchtest, teile mir bitte die neue gewünschte E-Mail-Adresse mit.`],
   ['bestätige Kündigung.', `Bitte bestätige mir, dass du deinen Vertrag bei uns zum XX.XX.2024 kündigen möchtest.`],
-  ['bestätige Widerruf.', `Bitte bestätige mir, dass du deinen Vertrag bei uns zum XX.XX.2024 kündigen möchtest.`],
+  ['bestätige Widerruf.', `Bitte bestätige mir, dass du deinen Vertrag bei uns widerrufen möchtest.`],
   ['IBAN z. SEPA', `Falls du dein SEPA-Mandat bei uns aktivieren möchtest, kannst du mir gerne deine IBAN mitteilen.`],
 ]
 //let theContentLineList = ichBrauche;
@@ -446,7 +446,7 @@ Wir sind von Montag bis Freitag zwischen 9:00 und 17:00 Uhr unter 040 593622030 
   ['feedback', `Wir würden uns sehr freuen, wenn du uns eine Bewertung hinterlassen würdest. 
 Hier ist der Link dazu: https://de.trustpilot.com/review/rabot-charge.de. 
 Dein Feedback ist uns wichtig!`],
-  ['Empfehlungscode', 'Mit dem Empfehlungscode CWZBIYS erhältst du eine Gutschrift von 50 € für jeden Vertrag, den du über unsere Webseite abschließt.'],
+  ['Empfehlungscode', 'Mit dem Empfehlungscode CWZBIYS erhältst du eine Gutschrift von 20 € für jeden Vertrag, den du über unsere Webseite abschließt.'],
 ];
 let tBAddingList = tBAddingDE;
 
@@ -466,7 +466,7 @@ const telNoteList = [
   ['test'],
   ['NKD', `G: NKD wollte Informationen über unseren Tarif und den Wechsel zu uns haben.`],
   ['Kollegen besprochen', 'G: Das Thema wurde bereits mit eiem Kollegen besprochen'],
-  ['WP Status', 'G: KD rief an, um den Status seiner WP zu erfahren'],
+  ['WP Status', 'G: KD rief an, um den Status seiner WP zu erfahren.'],
   ['Früher anfangen', `G: KD wollte früher bei uns anfangen.
 V: KD verlangt nach SoKü von AV, Vertrag bei uns widerrufen und ein neuer Vertrag schlissen.`],
 ]
@@ -481,7 +481,7 @@ let isLate = lateDE;
 
 let vorlageList = [
   ['Bereff', betreff],
-  ['Vorlage', vorlage], 
+  /*['Vorlage', vorlage], */
   ['Stornierung', stornierung],
   ['Phone notes', telNoteList]
 ];
