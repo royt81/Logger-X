@@ -25,7 +25,7 @@ const informations = [
     ['erfolgloser WP, KD nicht erreicht',"erfolgloser Wechsel, KD wurde nicht erreicht."],
     ['6 abgelehnte WPs',"erfolgloser Wechsel, 6 abgelehnte WPs."],
     ['Sophia über SLP zu RLM informiert',"Sophia über SLP zu RLM Kunde per Mail informiert."],
-    ['KD kündigt AV', `KD wird gebeten, den alten Vertrag selbst zu kündigen.`]
+    ['KD kündigt AV', `KD wird gebeten, den alten Vertrag selbst zu kündigen.`],
     ['KD teilt ZS mit',`KD teilt ZS mit. 
 ZN: 
 Datum: 
