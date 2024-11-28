@@ -225,7 +225,7 @@ const iNeed = [
   ['Confirm termination.', `Please confirm that you would like to cancel your contract with us as of XX.XX.2024.`],
   ['Confirm cancellation.', `Please confirm that you would like to withdraw your contract with us as of XX.XX.2024.`],
   ['IBAN 4 SEPA', `If you would like to activate your SEPA mandate with us, please provide me with your IBAN.`],
-  ['Cancel yourself', `We are still processing your switch to us, but we are having difficulty canceling the old contract. Please cancel the old contract yourself and then send us the cancellation confirmation so that we can complete the switch.`],
+  ['Cancel yourself', `I'm writting regarding your inrollment with us. We are still processing your switch to us, but we are having difficulty canceling the old contract. Please cancel the old contract yourself and then send us the cancellation confirmation so that we can complete the switch.`],
 ]
 const ichBrauche = [
   ['JV', `Bitte teile mir deinen neuen, gewünschten Jahresverbrauch mit. Ich werde ihn im System aktualisieren.`],
@@ -238,7 +238,7 @@ const ichBrauche = [
   ['bestätige Kündigung.', `Bitte bestätige mir, dass du deinen Vertrag bei uns zum XX.XX.2024 kündigen möchtest.`],
   ['bestätige Widerruf.', `Bitte bestätige mir, dass du deinen Vertrag bei uns widerrufen möchtest.`],
   ['IBAN z. SEPA', `Falls du dein SEPA-Mandat bei uns aktivieren möchtest, kannst du mir gerne deine IBAN mitteilen.`],
-  ['Selbst Kündigen', `Wir bearbeiten deinen Wechsel zu uns weiterhin, haben jedoch Schwierigkeiten, den alten Vertrag zu kündigen. Bitte kündige den alten Vertrag selbst und schicke uns anschließend die Kündigungsbestätigung zu, damit wir den Wechsel abschließen können.`],
+  ['Selbst Kündigen', `Wir melden uns bezüglich deines Wechsel zu uns. Wir bearbeiten deinen Wechsel zu uns weiterhin, haben jedoch Schwierigkeiten, den alten Vertrag zu kündigen. Bitte kündige den alten Vertrag selbst und schicke uns anschließend die Kündigungsbestätigung zu, damit wir den Wechsel abschließen können.`],
 ]
 //let theContentLineList = ichBrauche;
 
@@ -345,16 +345,16 @@ ${dailyClosing}.`
 const stornierung = [
   ['stornierung'],
   ['Kündigung', `Hallo {%customer.firstName,fallback=%},
-  
+    ​
 vielen Dank für deine Anfrage.
   ​
 Hiermit bestätigen wir dir den Eingang deiner Kündigung.
-  
+    ​
 Deine Kundennummer lautet: XXXXX
 Deine Vertragsnummer lautet: XXXXXX
-  
+    ​
 Du erhältst innerhalb von 6 Werktagen eine Kündigungsbestätigung.
-  
+    ​
 ​Ich wünsche dir einen tollen Tag.`],
   
   ['Widerruf', `Hallo {%customer.firstName,fallback=%},
@@ -362,7 +362,7 @@ Du erhältst innerhalb von 6 Werktagen eine Kündigungsbestätigung.
 vielen Dank für deine Anfrage.
   ​
 Hiermit bestätigen wir dir den Eingang deines Widerruf.
-  
+    ​
 Deine Kundennummer lautet: XXXXX
 Deine Vertragsnummer lautet: XXXXXX
   
