@@ -631,9 +631,9 @@ function runTBButton(){
 
   theTB = 
   `${theFirstLine}
-  
+  ​
 ${theSecondLine}
-
+  ​
 ${theContentLine}
 ${extra}
 ${theClosingLine}.`
