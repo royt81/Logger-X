@@ -619,6 +619,7 @@ function runCSSExpendList(cSSID, listID){
     subSectionItem.addEventListener('click', ()=>{
       contentSectionList[listID][1] == tBAddingList ? extra = `
 ${contentSectionList[listID][1][i][1]}
+    ​
 `
       : theContentLine = contentSectionList[listID][1][i][1];
     })
