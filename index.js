@@ -636,7 +636,9 @@ function runTBButton(){
 ${theSecondLine}
   ​
 ${theContentLine}
+  ​
 ${extra}
+  ​
 ${theClosingLine}.`
 
   console.log(theTB)
