@@ -294,7 +294,7 @@ function creatCopyPasteList(){
     i%2 == 0 ? item.style.backgroundColor = 'lightGray' : item.style.backgroundColor = 'lightBlue';
     item.className = 'item';
     const message =  `${dateToday} ${workerName}: ${informations[i][1]}`;
-    const name = `${dateToday} ${workerName}: ${informations[i][0]}`;
+    const name = `${dateToday}_RC_ ${workerName}: ${informations[i][0]}`;
     item.addEventListener('click', ()=>{
       navigator.clipboard.writeText(message);
     })
