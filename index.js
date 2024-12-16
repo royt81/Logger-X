@@ -634,11 +634,11 @@ function runTBButton(){
   `${theFirstLine}
   
 ${theSecondLine}
-  ​
+
 ${theContentLine}
-  ​
+
 ${extra}
-  ​
+
 ${theClosingLine}.`
 
   console.log(theTB)
