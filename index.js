@@ -3,9 +3,10 @@
 
 const informations = [
     "",
-    "Neuer WP mit E01",
-    "Neuer WP mit ZD2",
-    'Neuer WP mit E03',
+    "Neuer WP mit E01 + 3WT",
+    "Neuer WP mit ZD2 + 3WT",
+    'Neuer WP mit E03 + 3WT',
+    'Neuer WP mit E03 + 5WT',
     'KD wurde wegen fehlender Daten angeschrieben',
     'KD wurde erneut angeschrieben, da keine Antwort',
     'KD wurde angeschrieben und Informiert', 
