@@ -3,10 +3,9 @@
 
 const informations = [
     "",
-    "Neuer WP mit E01 6 Wochen Frist",
-    "Neuer WP mit ZD2 6 Wochen Frist",
-    'neuer WP mit E03 zum laut 10 Werktagefrist.',
-    'Neuer WP mit E03 fristgerecht laut 17 Werktage',
+    "Neuer WP mit E01",
+    "Neuer WP mit ZD2",
+    'Neuer WP mit E03',
     'KD wurde wegen fehlender Daten angeschrieben',
     'KD wurde erneut angeschrieben, da keine Antwort',
     'KD wurde angeschrieben und Informiert', 
