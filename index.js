@@ -257,7 +257,7 @@ async function setUpOldDaysList() {
   plusTen.innerText = `+3 days: ${tenDays}`
   plusTen.addEventListener('click', ()=>{navigator.clipboard.writeText(tenDays);})
 
-  oldDate.appendChild(dateUnitSixWeeks)
+  //oldDate.appendChild(dateUnitSixWeeks)
   oldDate.appendChild(plusSeventeen)
   oldDate.appendChild(plusTen)
 
