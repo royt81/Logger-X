@@ -237,8 +237,8 @@ async function setUpOldDaysList() {
   sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
 
   const formattedDateValue = await getOldTime(17);
-  const seventeenDays = await getOldTime(18);
-  const tenDays = await getOldTime(11);
+  const seventeenDays = await getOldTime(6);
+  const tenDays = await getOldTime(4);
 
   const oldDate = document.getElementById('oldDate'); 
 
@@ -249,12 +249,12 @@ async function setUpOldDaysList() {
 
   const plusSeventeen = document.createElement('div');
   plusSeventeen.className = 'dateUnit';
-  plusSeventeen.innerText = `+17 days: ${seventeenDays}`
+  plusSeventeen.innerText = `+5 days: ${seventeenDays}`
   plusSeventeen.addEventListener('click', ()=>{navigator.clipboard.writeText(seventeenDays);})
 
   const plusTen = document.createElement('div');
   plusTen.className = 'dateUnit';
-  plusTen.innerText = `+10 days: ${tenDays}`
+  plusTen.innerText = `+3 days: ${tenDays}`
   plusTen.addEventListener('click', ()=>{navigator.clipboard.writeText(tenDays);})
 
   oldDate.appendChild(dateUnitSixWeeks)
