@@ -9,11 +9,9 @@
 
 const informations = [
     ['',""],
-    ['WP E01',"Neuer WP mit E01, fristgerecht, bis zu 6 Wochen rückwirkend."],
-    ['WP E03 10 WT',"Neuer WP mit E03 fristgerecht laut 10 Werktage."],
-    ['WP E03 17 WT',"Neuer WP mit E03 fristgerecht laut 17 Werktage."],
-    ['WP E03 10/17 WT (Vattenfall)',"neuer WP mit E03, da Vattenfall laut 10/ 17 Werktagefrist."],
-    ['WP ZD2',"Neuer WP mit ZD2, fristgerecht, bis zu 6 Wochen rückwirkend."],
+    ['WP E01',"Neuer WP mit E01."],
+    ['WP ZD2',"Neuer WP mit ZD2."],
+    ['WP E03',"Neuer WP mit E03."],
     ['KD angeschrieben',"KD wurde wegen fehlender Daten angeschrieben."],
     ['KD informiert',"KD wurde angeschrieben und Informiert."],
     ['KD erneut angeschrieben',"KD wurde erneut angeschrieben, da keine Antwort."],
