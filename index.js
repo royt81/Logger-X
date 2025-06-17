@@ -237,8 +237,8 @@ async function setUpOldDaysList() {
   sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
 
   const formattedDateValue = await getOldTime(17);
-  const seventeenDays = await getOldTime(6);
-  const tenDays = await getOldTime(4);
+  const seventeenDays = await getOldTime(5);
+  const tenDays = await getOldTime(3);
 
   const oldDate = document.getElementById('oldDate'); 
 
