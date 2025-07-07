@@ -32,7 +32,7 @@ ZS: `],
 
 const linkList = [
     ['https://cockpit.rabot-charge.de/search', 'Cockpit'],
-    ['https://secure.helpscout.net/', 'Helpscout'],
+    ['https://rabot.enneo.ai/dashboard?lastDays=7', 'Enno'],
     ['https://www.rabot-charge.de/?utm_source=google&utm_medium=cpc&utm_campaign=DE_ACT_Search_Brand&gad_source=1&gclid=EAIaIQobChMItq-WzvHIggMV1BGLCh14_A_LEAAYASAAEgLQ6PD_BwE', 'Rabot-Charge Homepage'],
     ['https://www.check24.de/strom-gas/rabot-charge/', 'Check24 Rabot-Charge'],
     ['https://www.rabot-charge.de/waermepumpentarif/', 'Wärmepumpentarif'],
