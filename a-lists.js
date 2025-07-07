@@ -38,7 +38,8 @@ const linkList = [
     ['https://www.rabot-charge.de/waermepumpentarif/', 'Wärmepumpentarif'],
     ['https://www.iban-rechner.de/iban_validieren.html', 'IBAN Calculator'],
     ['https://bdew-codes.de/Codenumbers/BDEWCodes/CodeOverview', 'BDEW-Codes'],
-    ['https://www.bundesnetzagentur.de/DE/Home/home_node.html', 'Bundesnetzagentur']
+    ['https://www.bundesnetzagentur.de/DE/Home/home_node.html', 'Bundesnetzagentur'],
+    ['https://meetings-eu1.hubspot.com/produkt-beratung/beratungstermin-ks?uuid=724463a0-5745-41ef-97bc-99070682d540', 'Sales-Termin'],
   ];
 
 // const openning = `
