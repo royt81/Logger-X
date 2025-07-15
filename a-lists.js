@@ -40,7 +40,7 @@ const linkList = [
     ['https://bdew-codes.de/Codenumbers/BDEWCodes/CodeOverview', 'BDEW-Codes'],
     ['https://www.bundesnetzagentur.de/DE/Home/home_node.html', 'Bundesnetzagentur'],
     ['https://meetings-eu1.hubspot.com/produkt-beratung/beratungstermin-ks?uuid=724463a0-5745-41ef-97bc-99070682d540', 'Sales-Termin'],
-    ['https://forms.office.com/pages/responsepage.aspx?id=3QaK30nkOUGwV8wDtfeCPnh5LGsPnbFMmuckbMqP9rxUQUY4VlRNUVVTNjAzQTlUNjlQRFQ0Q1dQNy4u&route=shorturl', 'Strittiger Vertragsabschluss Sales']
+    ['https://forms.office.com/pages/responsepage.aspx?id=3QaK30nkOUGwV8wDtfeCPnh5LGsPnbFMmuckbMqP9rxUQUY4VlRNUVVTNjAzQTlUNjlQRFQ0Q1dQNy4u&route=shorturl', 'SVS']
   ];
 
 // const openning = `
