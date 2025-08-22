@@ -9,9 +9,9 @@
 
 const informations = [
     ['',""],
-    ['WP E01',"Neuer WP mit E01."],
-    ['WP ZD2',"Neuer WP mit ZD2."],
-    ['WP E03',"Neuer WP mit E03."],
+    ['WP E01',"Neuer WP mit E01"],
+    ['WP E03+3',"Neuer WP mit E03 + 3 Werktage."],
+    ['WP E03+5',"Neuer WP mit E03 + 5 Werktage."],
     ['KD angeschrieben',"KD wurde wegen fehlender Daten angeschrieben."],
     ['KD informiert',"KD wurde angeschrieben und Informiert."],
     ['KD erneut angeschrieben',"KD wurde erneut angeschrieben, da keine Antwort."],
@@ -24,10 +24,13 @@ const informations = [
     ['6 abgelehnte WPs',"erfolgloser Wechsel, 6 abgelehnte WPs."],
     ['Sophia über SLP zu RLM informiert',"Sophia über SLP zu RLM Kunde per Mail informiert."],
     ['KD kündigt AV', `KD wird gebeten, den alten Vertrag selbst zu kündigen.`],
-    ['KD teilt ZS mit',`KD teilt ZS mit. 
-ZN: 
-Datum: 
+    ['KD teilt ZS mit',`KD teilt ZS mit.
+ZN:
+Datum:
 ZS: `],
+['KD teilt ZT mit', `KD meldet Zählertausch`
+Zählernummer Neu:
+Tauschdatum: `],
 ];
 
 const linkList = [
