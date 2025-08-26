@@ -28,7 +28,7 @@ const informations = [
 ZN:
 Datum:
 ZS: `],
-['KD teilt ZT mit', `KD meldet Zählertausch`
+['KD teilt ZT mit', `KD meldet Zählertausch
 Zählernummer Neu:
 Tauschdatum: `],
 ];
