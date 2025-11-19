@@ -1,5 +1,5 @@
 
-// the input department // shortcutsTable//dateToday
+// the input department // shortcutsTable//dateToday setUpOldDaysLis addWorkDays
 const contact = document.getElementById('contact');
 
 const nameInput = document.createElement('input');
@@ -51,48 +51,145 @@ function getFormattedDateForAPI(date) {
 }
 const dateAPI = getFormattedDateForAPI(today);
 
-async function getOldTime(gap) {
-  const today = new Date();
+// async function getOldTime(gap) {
+//   const today = new Date();
 
-  function getFormattedDateForAPI(date) {
-    const dd = String(date.getDate()).padStart(2, '0');
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const yyyy = date.getFullYear();
-    return `${yyyy}-${mm}-${dd}`;
-  }
+//   function getFormattedDateForAPI(date) {
+//     const dd = String(date.getDate()).padStart(2, '0');
+//     const mm = String(date.getMonth() + 1).padStart(2, '0');
+//     const yyyy = date.getFullYear();
+//     return `${yyyy}-${mm}-${dd}`;
+//   }
 
-  const dateAPI = getFormattedDateForAPI(today);
+//   const dateAPI = getFormattedDateForAPI(today);
 
-  const url = `https://business-days-work-days-calculator.p.rapidapi.com/api/v1/get_result?state=DE&work_days=${gap}&start_date=${dateAPI}&options=0`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '3a36f5e67amshd9016e2e18744aap1f3a91jsn9aad55a7fab2',
-      'X-RapidAPI-Host': 'business-days-work-days-calculator.p.rapidapi.com',
-    },
-  };
+//   const url = `https://business-days-work-days-calculator.p.rapidapi.com/api/v1/get_result?state=DE&work_days=${gap}&start_date=${dateAPI}&options=0`;
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       'X-RapidAPI-Key': '3a36f5e67amshd9016e2e18744aap1f3a91jsn9aad55a7fab2',
+//       'X-RapidAPI-Host': 'business-days-work-days-calculator.p.rapidapi.com',
+//     },
+//   };
 
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
+//   try {
+//     const response = await fetch(url, options);
+//     const result = await response.json();
 
-    function formatDate(inputDate) {
-      const date = new Date(inputDate);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}.${month}.${year}`;
-    }
+//     function formatDate(inputDate) {
+//       const date = new Date(inputDate);
+//       const day = String(date.getDate()).padStart(2, '0');
+//       const month = String(date.getMonth() + 1).padStart(2, '0');
+//       const year = date.getFullYear();
+//       return `${day}.${month}.${year}`;
+//     }
 
-    const formattedDate = formatDate(result); 
-    //console.log('Formatted Date:', formattedDate);
+//     const formattedDate = formatDate(result); 
+//     //console.log('Formatted Date:', formattedDate);
 
-    return formattedDate;
-  } catch (error) {
-    console.error(error);
-    return null; 
-  }
+//     return formattedDate;
+//   } catch (error) {
+//     console.error(error);
+//     return null; 
+//   }
+// }
+
+// --- Date helpers ---
+
+function normalizeDate(date) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
 }
+
+function sameDay(a, b) {
+  return a.getFullYear() === b.getFullYear() &&
+         a.getMonth() === b.getMonth() &&
+         a.getDate() === b.getDate();
+}
+
+// Butcher algorithm for Easter Sunday (Gregorian calendar)
+function getEasterSunday(year) {
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31); // 3 = March, 4 = April
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+
+  return new Date(year, month - 1, day);
+}
+
+function offsetDate(date, days) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+// Nationwide German public holidays (no state-specific ones)
+function getGermanPublicHolidays(year) {
+  const holidays = [];
+
+  // Fixed-date holidays
+  holidays.push(new Date(year, 0, 1));   // 1 Jan – New Year
+  holidays.push(new Date(year, 4, 1));   // 1 May – Labour Day
+  holidays.push(new Date(year, 9, 3));   // 3 Oct – German Unity Day
+  holidays.push(new Date(year, 11, 25)); // 25 Dec – Christmas Day
+  holidays.push(new Date(year, 11, 26)); // 26 Dec – 2nd Christmas Day
+
+  // Easter-based holidays
+  const easterSunday = getEasterSunday(year);
+  holidays.push(offsetDate(easterSunday, -2)); // Good Friday
+  holidays.push(offsetDate(easterSunday, 1));  // Easter Monday
+  holidays.push(offsetDate(easterSunday, 39)); // Ascension Day
+  holidays.push(offsetDate(easterSunday, 50)); // Whit Monday
+
+  // Normalize times
+  return holidays.map(normalizeDate);
+}
+
+function isGermanPublicHoliday(date) {
+  const d = normalizeDate(date);
+  const year = d.getFullYear();
+  const holidays = getGermanPublicHolidays(year);
+
+  return holidays.some(h => sameDay(h, d));
+}
+
+function isWeekend(date) {
+  const day = date.getDay(); // 0 = Sunday, 6 = Saturday
+  return day === 0 || day === 6;
+}
+
+function isGermanWorkDay(date) {
+  return !isWeekend(date) && !isGermanPublicHoliday(date);
+}
+
+function addWorkDays(startDate, workDays) {
+  let date = normalizeDate(startDate);
+  let remaining = workDays;
+
+  const direction = workDays >= 0 ? 1 : -1;
+  remaining = Math.abs(workDays);
+
+  while (remaining > 0) {
+    date = offsetDate(date, direction);
+    if (isGermanWorkDay(date)) {
+      remaining--;
+    }
+  }
+
+  return date;
+}
+
 function run() {
 
   contact.innerHTML = "";
@@ -105,7 +202,7 @@ function run() {
   //singHaiku();
   creatCopyPasteList();
   createMPCalculator();
-  createTextBuilder();
+  //createTextBuilder();
 }
 
 function declareSections(){
@@ -232,38 +329,81 @@ function runMPCalculation(){
 
 }
 
-async function setUpOldDaysList() {
-  const sixWeeksAgo = new Date();
+// async function setUpOldDaysList() {
+//   const sixWeeksAgo = new Date();
+//   sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
+
+//   const formattedDateValue = await getOldTime(17);
+//   const seventeenDays = await getOldTime(6);
+//   const tenDays = await getOldTime(4);
+
+//   const oldDate = document.getElementById('oldDate'); 
+
+//   const dateUnitSixWeeks = document.createElement('div');
+//   dateUnitSixWeeks.className = 'dateUnit';
+//   dateUnitSixWeeks.innerText = `6 weeks: ${getFormattedDate(sixWeeksAgo)}`
+//   dateUnitSixWeeks.addEventListener('click', ()=>{navigator.clipboard.writeText(getFormattedDate(sixWeeksAgo));})
+
+//   const plusSeventeen = document.createElement('div');
+//   plusSeventeen.className = 'dateUnit';
+//   plusSeventeen.innerText = `+5 days: ${seventeenDays}`
+//   plusSeventeen.addEventListener('click', ()=>{navigator.clipboard.writeText(seventeenDays);})
+
+//   const plusTen = document.createElement('div');
+//   plusTen.className = 'dateUnit';
+//   plusTen.innerText = `+3 days: ${tenDays}`
+//   plusTen.addEventListener('click', ()=>{navigator.clipboard.writeText(tenDays);})
+
+//   //oldDate.appendChild(dateUnitSixWeeks)
+//   oldDate.appendChild(plusSeventeen)
+//   oldDate.appendChild(plusTen)
+
+//   const rightSideContact = document.getElementById('rightSideContact');
+//   rightSideContact.appendChild(oldDate);
+// }
+function setUpOldDaysList() {
+  const today = new Date();
+
+  // 6 calendar weeks ago
+  const sixWeeksAgo = new Date(today);
   sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
 
-  const formattedDateValue = await getOldTime(17);
-  const seventeenDays = await getOldTime(6);
-  const tenDays = await getOldTime(4);
+  // Workday-based offsets (Mon–Fri, skipping German public holidays)
+  const fiveWorkDaysLater = addWorkDays(today, 5);
+  const threeWorkDaysLater = addWorkDays(today, 3);
 
   const oldDate = document.getElementById('oldDate'); 
+  oldDate.innerHTML = ''; // clear if rerun
 
   const dateUnitSixWeeks = document.createElement('div');
   dateUnitSixWeeks.className = 'dateUnit';
-  dateUnitSixWeeks.innerText = `6 weeks: ${getFormattedDate(sixWeeksAgo)}`
-  dateUnitSixWeeks.addEventListener('click', ()=>{navigator.clipboard.writeText(getFormattedDate(sixWeeksAgo));})
+  dateUnitSixWeeks.innerText = `6 weeks: ${getFormattedDate(sixWeeksAgo)}`;
+  dateUnitSixWeeks.addEventListener('click', () => {
+    navigator.clipboard.writeText(getFormattedDate(sixWeeksAgo));
+  });
 
-  const plusSeventeen = document.createElement('div');
-  plusSeventeen.className = 'dateUnit';
-  plusSeventeen.innerText = `+5 days: ${seventeenDays}`
-  plusSeventeen.addEventListener('click', ()=>{navigator.clipboard.writeText(seventeenDays);})
+  const plusFive = document.createElement('div');
+  plusFive.className = 'dateUnit';
+  plusFive.innerText = `+5 workdays: ${getFormattedDate(fiveWorkDaysLater)}`;
+  plusFive.addEventListener('click', () => {
+    navigator.clipboard.writeText(getFormattedDate(fiveWorkDaysLater));
+  });
 
-  const plusTen = document.createElement('div');
-  plusTen.className = 'dateUnit';
-  plusTen.innerText = `+3 days: ${tenDays}`
-  plusTen.addEventListener('click', ()=>{navigator.clipboard.writeText(tenDays);})
+  const plusThree = document.createElement('div');
+  plusThree.className = 'dateUnit';
+  plusThree.innerText = `+3 workdays: ${getFormattedDate(threeWorkDaysLater)}`;
+  plusThree.addEventListener('click', () => {
+    navigator.clipboard.writeText(getFormattedDate(threeWorkDaysLater));
+  });
 
-  //oldDate.appendChild(dateUnitSixWeeks)
-  oldDate.appendChild(plusSeventeen)
-  oldDate.appendChild(plusTen)
+  oldDate.appendChild(dateUnitSixWeeks);
+  oldDate.appendChild(plusFive);
+  oldDate.appendChild(plusThree);
 
   const rightSideContact = document.getElementById('rightSideContact');
   rightSideContact.appendChild(oldDate);
 }
+
 
 function germanPhoneticAlphabet(){
   const germanPhoneticAlphabet = document.getElementById('germanPhoneticAlphabet');
@@ -693,5 +833,4 @@ function runTemplateExpendList(temlateSectionID, listID){
 
 //console.log(dayToday)
 ///
-
 
