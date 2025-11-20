@@ -369,8 +369,8 @@ function setUpOldDaysList() {
   sixWeeksAgo.setDate(sixWeeksAgo.getDate() - (6 * 7));
 
   // Workday-based offsets (Mon–Fri, skipping German public holidays)
-  const fiveWorkDaysLater = addWorkDays(today, 5);
-  const threeWorkDaysLater = addWorkDays(today, 3);
+  const fiveWorkDaysLater = addWorkDays(today, 6);
+  const threeWorkDaysLater = addWorkDays(today, 4);
 
   const oldDate = document.getElementById('oldDate'); 
   oldDate.innerHTML = ''; // clear if rerun
@@ -833,4 +833,5 @@ function runTemplateExpendList(temlateSectionID, listID){
 
 //console.log(dayToday)
 ///
+
 
