@@ -202,7 +202,7 @@ function run() {
   //singHaiku();
   creatCopyPasteList();
   createMPCalculator();
-  //createTextBuilder();
+  createTextBuilder();
 }
 
 function declareSections(){
@@ -833,6 +833,7 @@ function runTemplateExpendList(temlateSectionID, listID){
 
 //console.log(dayToday)
 ///
+
 
 
 
